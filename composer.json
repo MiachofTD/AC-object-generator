@@ -1,0 +1,32 @@
+{
+    "name": "laravel/framework",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "homepage": "https://laravel.com",
+    "support": {
+        "issues": "https://github.com/laravel/framework/issues",
+        "source": "https://github.com/laravel/framework"
+    },
+    "require": {
+        "illuminate/config": "5.4.*",
+        "illuminate/container": "5.4.*",
+        "illuminate/http": "5.4.*",
+        "illuminate/support": "5.4.*",
+        "symfony/var-dumper": "^3.3"
+    },
+    "autoload": {
+        "files": [
+            "app/helpers/helpers.php"
+        ],
+        "psr-4": {
+            "Illuminate\\": "src/Illuminate/",
+            "AC\\": "app/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
