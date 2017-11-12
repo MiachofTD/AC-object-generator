@@ -310,32 +310,6 @@ require __DIR__ . '/vendor/autoload.php';
                     <div class="col-md-6">&nbsp;</div>
                 </div>
                 <hr />
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="current-mana">Current Mana Value</label>
-                        <input type="number" name="int[107]" class="form-control" id="current-mana" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="max-mana">Maximum Mana Value</label>
-                        <input type="number" name="int[108]" class="form-control" id="max-mana" />
-                    </div>
-                </div>
-                <div class="row">&nbsp;</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="arcane-lore">Player Acrane Lore Level</label>
-                        <input type="number" name="int[109]" class="form-control" id="arcane-lore" />
-                        <input type="hidden" name="int[106]" id="spellcraft" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="mana-rate">Mana Usage Rate</label>
-                        <select name="float[5]" class="form-control" id="mana-rate">
-                            <option value="">-- Select One --</option>
-                            <?php echo dropdown_options( 'mana-usage'); ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">&nbsp;</div>
                 <div class="spells">
                     <div class="row">
                         <div class="col-md-4">
@@ -374,6 +348,34 @@ require __DIR__ . '/vendor/autoload.php';
                 <div class="row">
                     <div class="col-md-2">
                         <span class="btn btn-primary form-control add-item">Add More Spells</span>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="spell-requirements">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="current-mana">Current Mana Value</label>
+                            <input type="number" name="int[107]" class="form-control" id="current-mana" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="max-mana">Maximum Mana Value</label>
+                            <input type="number" name="int[108]" class="form-control" id="max-mana" />
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="arcane-lore">Player Acrane Lore Level</label>
+                            <input type="number" name="int[109]" class="form-control" id="arcane-lore" />
+                            <input type="hidden" name="int[106]" id="spellcraft" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mana-rate">Mana Usage Rate</label>
+                            <select name="float[5]" class="form-control" id="mana-rate">
+                                <option value="">-- Select One --</option>
+                                <?php echo dropdown_options( 'mana-usage'); ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -427,16 +429,10 @@ require __DIR__ . '/vendor/autoload.php';
                     }).length;
 
                     if ( count > 0 ) {
-                        $('#arcane-lore').prop('required', true);
-                        $('#mana-rate').prop('required', true);
-                        $('#current-mana').prop('required', true);
-                        $('#max-mana').prop('required', true);
+                        $('.spell-requirements input').prop('required', true);
                     }
                     else {
-                        $('#arcane-lore').prop('required', false);
-                        $('#mana-rate').prop('required', false);
-                        $('#current-mana').prop('required', false);
-                        $('#max-mana').prop('required', false);
+                        $('.spell-requirements input').prop('required', false);
                     }
                 });
             });
