@@ -12,6 +12,9 @@ use AC\Models\Armor;
 use AC\Models\Jewelry;
 use AC\Models\WorldItem;
 use AC\Models\GameObject;
+use AC\Models\MageWeapon;
+use AC\Models\MeleeWeapon;
+use AC\Models\RangedWeapon;
 use Illuminate\Http\Request;
 
 $request = Request::capture();
@@ -27,7 +30,14 @@ switch ( $request->get( 'objectType' ) ) {
     case 'armor':
         $object = new Armor( $request );
     break;
-    default:
+    case 'melee-weapon':
+        $object = new MeleeWeapon( $request );
+    break;
+    case 'ranged-weapon':
+        $object = new RangedWeapon( $request );
+    break;
+    case 'mage-weapon':
+        $object = new MageWeapon( $request );
     break;
 }
 

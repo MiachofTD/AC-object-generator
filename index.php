@@ -9,7 +9,7 @@
 $files = [
     'world item' => 'world-item.php',
     'jewelry' => 'jewelry.php',
-    'armor' => '#',
+    'armor' => 'armor.php',
     'melee weapon' => '#',
     'ranged weapon' => '#',
     'mage weapon' => '#',

@@ -8,17 +8,11 @@
 
 namespace AC\Models;
 
+use AC\Traits\Wearable;
+
 class Jewelry extends GameObject
 {
-    /**
-     * @var string
-     */
-    public $fileName;
-
-    /**
-     * @var string
-     */
-    public $type;
+    use Wearable;
 
     /**
      * Stat values necessary for each jewelry type
@@ -92,53 +86,6 @@ class Jewelry extends GameObject
     ];
 
     /**
-     * @var array
-     */
-    protected $spellCastingLikelyhood = [
-        'always' => 2.0,
-    ];
-
-    /**
-     * @var int
-     */
-    public $weenieType;
-
-    /**
-     * @var array
-     */
-    public $int = [];
-
-    /**
-     * @var array
-     */
-    public $bool = [];
-
-    /**
-     * @var array
-     */
-    public $float = [];
-
-    /**
-     * @var array
-     */
-    public $did = [];
-
-    /**
-     * @var array
-     */
-    public $string = [];
-
-    /**
-     * @var array
-     */
-    public $spellbook = [];
-
-    /**
-     * @var array
-     */
-    public $spells = [];
-
-    /**
      * @param array $data
      *
      * @return void
@@ -172,73 +119,5 @@ class Jewelry extends GameObject
             }
             $this->spellbook[ $spell ] = [ 'casting_likelihood' => array_get( $this->spellCastingLikelyhood, 'always', '' ) ];
         }
-    }
-
-    /**
-     * @param string 0$statType
-     *
-     * @return array
-     */
-    protected function addDefaults( $statType )
-    {
-        $stats = $this->{$statType} +
-            array_get( $this->defaults, $statType, [] ) +
-            array_get( $this->stats, $this->type . '.' . $statType, [] );
-
-        foreach ( $stats as $key => $value ) {
-            if (
-                ( empty( $value ) || $value === 0 ) &&
-                array_has( $this->optionalStats, $statType . '.' . $key )
-            ) {
-                unset( $stats[ $key ] );
-            }
-        }
-
-        switch ( $statType ) {
-            case 'bool':
-                foreach ( $stats as $key => $value ) {
-                    $stat = filter_var( $value, FILTER_VALIDATE_BOOLEAN );
-                    $stats[ $key ] = $stat ? 1 : 0;
-                }
-            break;
-            case 'did':
-            case 'int':
-            case 'spells':
-                $stats = array_map( 'intval', $stats );
-            break;
-            case 'float':
-                $stats = array_map( 'floatval', $stats );
-            break;
-            case 'string':
-                $stats = array_map( 'strval', $stats );
-            break;
-        }
-
-        return $stats;
-    }
-
-    /**
-     * @param bool $pretty
-     *
-     * @return string
-     */
-    public function convertToJson( $pretty = true )
-    {
-        $json = [
-            'intStats' => $this->convertStatsToJson( $this->int ),
-            'boolStats' => $this->convertStatsToJson( $this->bool ),
-            'floatStats' => $this->convertStatsToJson( $this->float ),
-            'didStats' => $this->convertStatsToJson( $this->did ),
-            'stringStats' => $this->convertStatsToJson( $this->string ),
-            'spellbook' => $this->convertStatsToJson( $this->spellbook ),
-            'wcid' => (int)$this->wcid,
-            'weenieType' => $this->weenieType,
-        ];
-
-        if ( $pretty ) {
-            return json_encode( $json, JSON_PRETTY_PRINT );
-        }
-
-        return json_encode( $json );
     }
 }

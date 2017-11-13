@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: lisa
- * Date: 11/6/17
- * Time: 5:28 PM
+ * Date: 11/12/17
+ * Time: 5:53 PM
  */
 
 namespace AC\Models;
 
 use AC\Traits\Wearable;
 
-class Armor extends GameObject
+class MageWeapon extends GameObject
 {
     use Wearable;
 
@@ -79,15 +79,6 @@ class Armor extends GameObject
         parent::mapData( $data );
 
         $this->weenieType = array_get( $this->stats, $this->type . '.weenieType' );
-
-        //Set the item type
-        $this->stats[ 'coat' ][ 'int' ][ '1' ] = config( 'item-type.armor.id' );
-
-        //Clothing Priority
-        $this->stats[ 'coat' ][ 'int' ][ '4' ] = config( 'clothing-priority.armor.chest-ul-arms.id' );
-
-        //Set the body location
-        $this->stats[ 'coat' ][ 'int' ][ '9' ] = config( 'body-location.armor.chest-ul-arms.id' );
 
         $this->int = $this->addDefaults( 'int' );
         $this->bool = $this->addDefaults( 'bool' );

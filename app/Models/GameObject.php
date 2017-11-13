@@ -23,13 +23,6 @@ abstract class GameObject
     public $wcid;
 
     /**
-     * @param bool $pretty
-     *
-     * @return string
-     */
-    abstract public function convertToJson( $pretty = true );
-
-    /**
      * GameObject constructor.
      *
      * @param Request $request
@@ -68,5 +61,30 @@ abstract class GameObject
         }
 
         return $json;
+    }
+
+    /**
+     * @param bool $pretty
+     *
+     * @return string
+     */
+    public function convertToJson( $pretty = true )
+    {
+        $json = [
+            'intStats' => $this->convertStatsToJson( $this->int ),
+            'boolStats' => $this->convertStatsToJson( $this->bool ),
+            'floatStats' => $this->convertStatsToJson( $this->float ),
+            'didStats' => $this->convertStatsToJson( $this->did ),
+            'stringStats' => $this->convertStatsToJson( $this->string ),
+            'spellbook' => $this->convertStatsToJson( $this->spellbook ),
+            'wcid' => (int)$this->wcid,
+            'weenieType' => $this->weenieType,
+        ];
+
+        if ( $pretty ) {
+            return json_encode( $json, JSON_PRETTY_PRINT );
+        }
+
+        return json_encode( $json );
     }
 }
