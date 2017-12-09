@@ -13,9 +13,10 @@ require __DIR__ . '/vendor/autoload.php';
 <html>
     <head>
         <title>AC Custom Object Creator | Jewelry</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href="css/bootstrap-switch.min.css" rel="stylesheet">
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -74,6 +75,17 @@ require __DIR__ . '/vendor/autoload.php';
                 <div class="row">&nbsp;</div>
                 <div class="row">
                     <div class="col-md-6">
+                        <label for="bonded">Bonded</label>&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="int[33]" checked id="bonded" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="attuned">Attuned</label>&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="int[114]" checked id="attuned" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-6">
                         <label for="pyreal-value">Pyreal Value</label>
                         <input type="number" name="int[19]" class="form-control" id="pyreal-value" required />
                     </div>
@@ -81,6 +93,14 @@ require __DIR__ . '/vendor/autoload.php';
                         <label for="burden-value">Burden Value</label>
                         <input type="number" name="int[5]" class="form-control" id="burden-value" required />
                     </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="amor-level">Armor Level</label>
+                        <input type="number" name="int[28]" class="form-control" id="armor-level" />
+                    </div>
+                    <div class="col-md-6">&nbsp;</div>
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
@@ -112,202 +132,6 @@ require __DIR__ . '/vendor/autoload.php';
                             <?php echo dropdown_options( 'pallet-template' ); ?>
                         </select>
                     </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="slash-protection">Slashing Protection</label>
-                        <select name="float[13]" class="form-control" id="slash-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="pierce-protection">Piercing Protection</label>
-                        <select name="float[14]" class="form-control" id="pierce-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">&nbsp;</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="bludgeon-protection">Bludgeoning Protection</label>
-                        <select name="float[15]" class="form-control" id="bludgeon-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cold-protection">Cold Protection</label>
-                        <select name="float[16]" class="form-control" id="cold-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">&nbsp;</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="fire-protection">Fire Protection</label>
-                        <select name="float[17]" class="form-control" id="fire-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="acid-protection">Acid Protection</label>
-                        <select name="float[18]" class="form-control" id="acid-protection">
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">&nbsp;</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="electric-protection">Electrical Protection</label>
-                        <select name="float[19]" class="form-control" id="electric-protection">
-                            <option value="">-- Select One --</option>
-                            <option value="0.0">No Protection</option>
-                            <option value="0.1">0.1</option>
-                            <option value="0.2">0.2</option>
-                            <option value="0.3">0.3</option>
-                            <option value="0.4">0.4</option>
-                            <option value="0.5">0.5</option>
-                            <option value="0.6">0.6</option>
-                            <option value="0.7">0.7</option>
-                            <option value="0.8">0.8</option>
-                            <option value="0.9">0.9</option>
-                            <option value="1.0">1.0</option>
-                            <option value="1.1">1.1</option>
-                            <option value="1.2">1.2</option>
-                            <option value="1.3">1.3</option>
-                            <option value="1.4">1.4</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.6">1.6</option>
-                            <option value="1.7">1.7</option>
-                            <option value="1.8">1.8</option>
-                            <option value="1.9">1.9</option>
-                            <option value="2.0">Max Protection</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">&nbsp;</div>
                 </div>
                 <hr />
                 <div class="spells">
@@ -390,6 +214,7 @@ require __DIR__ . '/vendor/autoload.php';
             </form>
         </div>
 
+        <script src="js/bootstrap-switch.min.js"></script>
         <script type="text/javascript">
             function addItem() {
                 const html = $('div.spell').last().html();
@@ -407,6 +232,12 @@ require __DIR__ . '/vendor/autoload.php';
             }
 
             $(document).ready(function () {
+                $("[type='checkbox']").bootstrapSwitch({
+                    onText: 'Yes',
+                    offText: 'No',
+                    onColor: 'success'
+                });
+
                 $(document).on('click', '.add-item', function () {
                     //Create new item
                     const spells = $('.spells');

@@ -8,6 +8,8 @@
 
 namespace AC\Models;
 
+use Illuminate\Http\Request;
+
 class WorldItem extends GameObject
 {
     /**
@@ -31,13 +33,13 @@ class WorldItem extends GameObject
     public $angles;
 
     /**
-     * @param array $data
+     * @param Request $request
      *
      * @return void
      */
-    protected function mapData( array $data )
+    protected function mapData( Request $request )
     {
-        parent::mapData( $data );
+        parent::mapData( $request );
 
         $this->extractLocation();
     }

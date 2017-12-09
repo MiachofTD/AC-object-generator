@@ -23,46 +23,6 @@ trait Wearable
     public $type;
 
     /**
-     * @var int
-     */
-    public $weenieType;
-
-    /**
-     * @var array
-     */
-    public $int = [];
-
-    /**
-     * @var array
-     */
-    public $bool = [];
-
-    /**
-     * @var array
-     */
-    public $float = [];
-
-    /**
-     * @var array
-     */
-    public $did = [];
-
-    /**
-     * @var array
-     */
-    public $string = [];
-
-    /**
-     * @var array
-     */
-    public $spellbook = [];
-
-    /**
-     * @var array
-     */
-    public $spells = [];
-
-    /**
      * @var array
      */
     protected $spellCastingLikelyhood = [
@@ -77,13 +37,13 @@ trait Wearable
     protected function addDefaults( $statType )
     {
         if ( !isset( $this->defaults ) ) {
-            throw new LogicException( get_class($this) . ' must have a $defaults.' );
+            throw new LogicException( get_class( $this ) . ' must have a $defaults.' );
         }
         if ( !isset( $this->stats ) ) {
-            throw new LogicException( get_class($this) . ' must have a $stats.' );
+            throw new LogicException( get_class( $this ) . ' must have a $stats.' );
         }
         if ( !isset( $this->optionalStats ) ) {
-            throw new LogicException( get_class($this) . ' must have a $optionalStats.' );
+            throw new LogicException( get_class( $this ) . ' must have a $optionalStats.' );
         }
 
         $stats = $this->{$statType} +
@@ -120,6 +80,40 @@ trait Wearable
         }
 
         return $stats;
+    }
+
+    /**
+     * @param $configType
+     *
+     * @return mixed
+     */
+    protected function configKey( $configType )
+    {
+        $configKeys = [];
+
+        switch ( $this->type ) {
+            case 'bracelet':
+                $configKeys[ 'item-type' ] = 'item-type.jewelry';
+                $configKeys[ 'body-location' ] = 'body-location.jewelry.either-wrist';
+            break;
+
+            case 'necklace':
+                $configKeys[ 'item-type' ] = 'item-type.misc'; //Yes, I know 'misc' doesn't make sense
+                $configKeys[ 'body-location' ] = 'jewelry.necklace';
+            break;
+
+            case 'ring':
+                $configKeys[ 'item-type' ] = 'item-type.misc'; //Yes, I know 'misc' doesn't make sense
+                $configKeys[ 'body-location' ] = 'jewelry.either-finger';
+            break;
+
+            case 'coat':
+                $configKeys[ 'clothing-priority' ] = 'clothing-priority.armor.chest-ul-arms';
+                $configKeys[ 'body-location' ] = 'body-location.armor.chest-ul-arms';
+            break;
+        }
+
+        return array_get( $configKeys, $configType, '' );
     }
 
 }

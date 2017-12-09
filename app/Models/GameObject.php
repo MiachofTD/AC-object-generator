@@ -23,23 +23,63 @@ abstract class GameObject
     public $wcid;
 
     /**
+     * @var int
+     */
+    public $weenieType;
+
+    /**
+     * @var array
+     */
+    public $int = [];
+
+    /**
+     * @var array
+     */
+    public $bool = [];
+
+    /**
+     * @var array
+     */
+    public $float = [];
+
+    /**
+     * @var array
+     */
+    public $did = [];
+
+    /**
+     * @var array
+     */
+    public $string = [];
+
+    /**
+     * @var array
+     */
+    public $spellbook = [];
+
+    /**
+     * @var array
+     */
+    public $spells = [];
+
+    /**
      * GameObject constructor.
      *
      * @param Request $request
      */
     public function __construct( Request $request )
     {
-        $this->mapData( $request->all() );
+        $this->mapData( $request );
     }
 
     /**
-     * @param array $request
+     * @param Request $request
      *
      * @return $this
      */
-    protected function mapData( array $request )
+    protected function mapData( Request $request )
     {
-        foreach ( $request as $key => $value ) {
+        foreach ( $request->all() as $key => $value ) {
             $camelCase = camel_case( $key );
 
             $this->{$camelCase} = $value;

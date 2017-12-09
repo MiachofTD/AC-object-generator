@@ -9,6 +9,7 @@
 namespace AC\Models;
 
 use AC\Traits\Wearable;
+use Illuminate\Http\Request;
 
 class MeleeWeapon extends GameObject
 {
@@ -70,13 +71,13 @@ class MeleeWeapon extends GameObject
     ];
 
     /**
-     * @param array $data
+     * @param Request $request
      *
      * @return void
      */
-    protected function mapData( array $data )
+    protected function mapData( Request $request )
     {
-        parent::mapData( $data );
+        parent::mapData( $request );
 
         $this->weenieType = array_get( $this->stats, $this->type . '.weenieType' );
 

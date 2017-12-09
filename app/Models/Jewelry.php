@@ -9,6 +9,7 @@
 namespace AC\Models;
 
 use AC\Traits\Wearable;
+use Illuminate\Http\Request;
 
 class Jewelry extends GameObject
 {
@@ -86,25 +87,21 @@ class Jewelry extends GameObject
     ];
 
     /**
-     * @param array $data
+     * @param Request $request
      *
      * @return void
      */
-    protected function mapData( array $data )
+    protected function mapData( Request $request )
     {
-        parent::mapData( $data );
+        parent::mapData( $request );
 
         $this->weenieType = array_get( $this->stats, $this->type . '.weenieType' );
 
         //Set the item type
-        $this->stats[ 'bracelet' ][ 'int' ][ '1' ] = config( 'item-type.jewelry.id' );
-        $this->stats[ 'necklace' ][ 'int' ][ '1' ] = config( 'item-type.misc.id' ); //Yes, I know 'misc' doesn't make sense
-        $this->stats[ 'ring' ][ 'int' ][ '1' ] = config( 'item-type.misc.id' );     //Yes, I know 'misc' doesn't make sense
+        $this->stats[ $this->type ][ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
 
         //Set the body location
-        $this->stats[ 'bracelet' ][ 'int' ][ '9' ] = config( 'body-location.jewelry.either-wrist.id' );
-        $this->stats[ 'necklace' ][ 'int' ][ '9' ] = config( 'body-location.jewelry.necklace.id' );
-        $this->stats[ 'ring' ][ 'int' ][ '9' ] = config( 'body-location.jewelry.either-finger.id' );
+        $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
 
         $this->int = $this->addDefaults( 'int' );
         $this->bool = $this->addDefaults( 'bool' );
