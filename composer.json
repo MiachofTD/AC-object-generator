@@ -1,32 +1,56 @@
 {
-    "name": "laravel/framework",
+    "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "homepage": "https://laravel.com",
-    "support": {
-        "issues": "https://github.com/laravel/framework/issues",
-        "source": "https://github.com/laravel/framework"
-    },
+    "type": "project",
     "require": {
-        "illuminate/config": "5.4.*",
-        "illuminate/container": "5.4.*",
-        "illuminate/http": "5.4.*",
-        "illuminate/support": "5.4.*",
-        "symfony/var-dumper": "^3.3"
+        "php": ">=7.0.0",
+        "fideloper/proxy": "~3.3",
+        "laravel/framework": "5.5.*",
+        "laravel/tinker": "~1.0"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "~1.0",
+        "phpunit/phpunit": "~6.0"
     },
     "autoload": {
-        "files": [
-            "app/helpers/helpers.php"
+        "classmap": [
+            "database/seeds",
+            "database/factories"
         ],
         "psr-4": {
-            "Illuminate\\": "src/Illuminate/",
-            "AC\\": "app/"
+            "App\\": "app/"
         }
     },
-    "config": {
-        "sort-packages": true
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
 }
