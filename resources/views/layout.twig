@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en/us">
+    <head>
+        <title>{% block title %}{% endblock %} | AC Custom Object Generator</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous" />
+        <link rel="stylesheet" href="{{ asset( 'css/app.css') }}" type="text/css">
+        {% block styles %}{% endblock styles %}
+        {% block header_scripts %}{% endblock header_scripts %}
+
+        {% import 'macros.meta' as meta %}
+
+        {% block meta %}
+            {% block meta_canonical %}{% endblock %}
+            {% block meta_title %}
+                {{ meta.itemprop( 'name', 'FuriousFoodie (dot) com' ) }}
+                {{ meta.property( 'og:title', 'FuriousFoodie (dot) com' ) }}
+                {{ meta.name( 'twitter:title', 'FuriousFoodie (dot) com' ) }}
+            {% endblock %}
+            {% block meta_sitename %}
+                {#{ meta.name( 'twitter:site', '@julisana' ) }#}
+                {{ meta.property( 'og:site_name', 'Furious Foodie' ) }}
+                {{ meta.name( 'twitter:card', 'summary' ) }}
+            {% endblock %}
+            {% block meta_description %}
+                {{ meta.name( 'description', 'Find your favorite recipes with the Furious Foodie' ) }}
+                {{ meta.property( 'og:description', 'Find your favorite recipes with the Furious Foodie' ) }}
+                {{ meta.property( 'twitter:description', 'Find your favorite recipes with the Furious Foodie' ) }}
+            {% endblock %}
+            {% block meta_image %}
+                {#{ meta.itemprop( 'image', '' ) }#}
+                {{ meta.property( 'og:image', '' ) }}
+                {{ meta.name( 'twitter:image:src', '' ) }}
+
+                {{ meta.property( 'og:image:url', '' ) }}
+                {{ meta.property( 'og:image:width', '' ) }}
+                {{ meta.property( 'og:image:height', '' ) }}
+            {% endblock %}
+            {% block meta_other %}{% endblock %}
+        {% endblock meta %}
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                {% include 'navigation' %}
+                {% include 'messages' %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>{% block pageTitle %}{% endblock %}</h2>
+                    </div>
+                    {% if buttons is not empty %}
+                        {% include 'buttons' %}
+                    {% endif %}
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+
+            <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+            {% block footer_scripts %}{% endblock footer_scripts %}
+            <footer>
+                <hr/>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group( [ 'middleware' => [ 'force.ssl' ] ], function () {
+    Route::get( '/', [ 'as' => 'dashboard', 'uses' => 'DashboardController@index' ] );
 });
