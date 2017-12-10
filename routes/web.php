@@ -11,6 +11,11 @@
 |
 */
 
-Route::group( [ 'middleware' => [ 'force.ssl' ] ], function () {
+Route::group( [ 'middleware' => [ 'force.ssl', 'global.variables' ] ], function () {
     Route::get( '/', [ 'as' => 'dashboard', 'uses' => 'DashboardController@index' ] );
+
+    Route::get( '/world-item', [ 'as' => 'world-item', 'uses' => 'ObjectController@worldItem' ] );
+    Route::get( '/jewelry', [ 'as' => 'jewelry', 'uses' => 'ObjectController@jewelry' ] );
+    Route::get( '/armor', [ 'as' => 'armor', 'uses' => 'ObjectController@armor' ] );
+    Route::get( '/weapon', [ 'as' => 'weapon', 'uses' => 'ObjectController@weapon' ] );
 });

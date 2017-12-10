@@ -7,7 +7,11 @@
         </div>
 
         <ul class="nav navbar-nav">
-            
+            <li>{{ nav.menuItem( 'dashboard', {}, currentRoute, 'Dashboard' ) }}</li>
+            <li>{{ nav.menuItem( 'world-item', {}, currentRoute, 'World Item' ) }}</li>
+            <li>{{ nav.menuItem( 'jewelry', {}, currentRoute, 'Jewelry' ) }}</li>
+            <li>{{ nav.menuItem( 'armor', {}, currentRoute, 'Armor' ) }}</li>
+            <li>{{ nav.menuItem( 'weapon', {}, currentRoute, 'Weapon' ) }}</li>
         </ul>
     </div>
 </nav>
