@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace AC\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use AC\Traits\Wearable;
 
-class Jewelry extends Model
+class Jewelry extends GameObject
 {
+    use Wearable;
+
     /**
      * The primary key for the model.
      *

@@ -3,6 +3,7 @@
     <head>
         <title>{% block title %}{% endblock %} | AC Custom Object Generator</title>
         <link rel="stylesheet" href="{{ asset( 'css/app.css') }}" type="text/css">
+        <link rel="stylesheet" href="//gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" type="text/css" />
         {% block styles %}{% endblock styles %}
         {% block header_scripts %}{% endblock header_scripts %}
 
@@ -57,7 +58,14 @@
 
             {% block content %}{% endblock %}
 
-            <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+            <script type="text/javascript" src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+            <script type="text/javascript">
+                $('input[type="checkbox"]').bootstrapToggle({
+                    'on': 'Yes',
+                    'off': 'No'
+                });
+            </script>
 
             {% block footer_scripts %}{% endblock footer_scripts %}
             <footer>

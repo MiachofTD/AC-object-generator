@@ -22,7 +22,7 @@
                     'bracelet': 'Bracelet',
                     'necklace': 'Necklace',
                     'ring': 'Ring'
-                }, old( 'type', '' ), { id: 'file-name', class: 'form-control', required: true } ) }}
+                }, old( 'type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
             </div>
         </div>
         <div class="row">&nbsp;</div>
@@ -47,6 +47,17 @@
             <div class="col-md-6">
                 {{ form_label( 'additional-description', 'Additional Description' ) }}
                 {{ form_text( 'string[16]', old( 'string[16]', '' ), { id: 'additional-description', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'bonded', 'Bonded' ) }}&nbsp;&nbsp;&nbsp;
+                {{ form_checkbox( 'int[33]', old( 'int[33]', '' ), { id: 'bonded', class: 'form-control', required: false } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'attuned', 'Attuned' ) }}&nbsp;&nbsp;&nbsp;
+                {{ form_checkbox( 'int[114]', old( 'int[114]', '' ), { id: 'attuned', class: 'form-control', required: false } ) }}
             </div>
         </div>
         <div class="row">&nbsp;</div>
@@ -131,7 +142,6 @@
         <hr />
         <div class="row">
             <div class="col-md-4">
-                <input type="hidden" name="objectType" value="jewelry" />
                 {{ form_hidden( 'objectType', 'jewelry' ) }}
 
                 {{ form_label( 'submit', ' ' ) }}
