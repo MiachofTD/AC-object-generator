@@ -18,7 +18,12 @@ class CreateJewelryTable extends Migration
             $table->bigIncrements( 'wcid' );
             $table->string( 'type' );
             $table->string( 'tier' );
-            $table->text( 'data' )->nullable();
+            $table->text( 'int' )->nullable();
+            $table->text( 'bool' )->nullable();
+            $table->text( 'float' )->nullable();
+            $table->text( 'did' )->nullable();
+            $table->text( 'string' )->nullable();
+            $table->text( 'spellbook' )->nullable();
 
             $table->timestamps();
         } );

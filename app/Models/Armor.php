@@ -30,6 +30,11 @@ class Armor extends GameObject
      * @var array
      */
     protected $casts = [
-        'data' => 'array'
+        'int' => 'array',
+        'bool' => 'array',
+        'float' => 'array',
+        'did' => 'array',
+        'string' => 'array',
+        'spellbook' => 'array',
     ];
 }
