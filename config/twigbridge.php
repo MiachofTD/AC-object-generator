@@ -178,6 +178,9 @@ return [
             'elixir',
             'head',
             'last',
+            'dropdown_options',
+            'dropdown_category',
+            'dropdown_options_group',
         ],
 
         /*

@@ -19,7 +19,7 @@ class Weapon extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'tier', 'data',
+        'type', 'tier', 'int', 'bool', 'float', 'did', 'string', 'spellbook'
     ];
 
     /**
@@ -28,6 +28,11 @@ class Weapon extends Model
      * @var array
      */
     protected $casts = [
-        'data' => 'array'
+        'int' => 'array',
+        'bool' => 'array',
+        'float' => 'array',
+        'did' => 'array',
+        'string' => 'array',
+        'spellbook' => 'array',
     ];
 }

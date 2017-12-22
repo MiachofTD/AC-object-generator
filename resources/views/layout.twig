@@ -4,6 +4,10 @@
         <title>{% block title %}{% endblock %} | AC Custom Object Generator</title>
         <link rel="stylesheet" href="{{ asset( 'css/app.css') }}" type="text/css">
         <link rel="stylesheet" href="//gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" type="text/css" />
+
+        <!-- CSRF Token -->
+        {#<meta name="csrf-token" content="{{ csrf_token() }}" />#}
+
         {% block styles %}{% endblock styles %}
         {% block header_scripts %}{% endblock header_scripts %}
 

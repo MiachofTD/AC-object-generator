@@ -5,7 +5,7 @@
 {% block pageTitle %}Jewelry{% endblock %}
 
 {% block content %}
-    <form action="{{ route( 'jewelry' ) }}" method="post">
+    <form action="{{ route( 'json-object' ) }}" method="post">
         <div class="row">
             <div class="col-md-6">
                 <label for="file-name">File Name</label>
@@ -35,6 +35,9 @@
                 {{ form_label( 'icon', 'Icon' ) }}
                 <select name="did[8]" id="icon" class="form-control" required>
                     <option>-- Select One --</option>
+                    {{ dropdown_category( 'icons.jewelry.bracelet', 'Bracelets' )|raw }}
+                    {{ dropdown_category( 'icons.jewelry.necklace', 'Necklaces' )|raw }}
+                    {{ dropdown_category( 'icons.jewelry.ring', 'Rings' )|raw }}
                 </select>
             </div>
         </div>
@@ -97,11 +100,13 @@
                 <div class="col-md-6">
                     <select name="spells[]" class="form-control" id="creature-spells">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.creature' )|raw }}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <select name="spells[]" class="form-control" id="life-spells">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.life' )|raw }}
                     </select>
                 </div>
             </div>
@@ -135,6 +140,7 @@
                     <label for="mana-rate">Mana Usage Rate</label>
                     <select name="float[5]" class="form-control" id="mana-rate">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options( 'mana-usage' )|raw }}
                     </select>
                 </div>
             </div>
@@ -143,6 +149,7 @@
         <div class="row">
             <div class="col-md-4">
                 {{ form_hidden( 'objectType', 'jewelry' ) }}
+                {{ csrf_field() }}
 
                 {{ form_label( 'submit', ' ' ) }}
                 {{ form_submit( 'Generate JSON', { class: 'form-control btn btn-success', id: 'submit' } ) }}

@@ -46,9 +46,9 @@ trait Wearable
             throw new LogicException( get_class( $this ) . ' must have a $optionalStats.' );
         }
 
-        $stats = $this->{$statType} +
+        $stats = $this->getAttribute( $statType ) +
             array_get( $this->defaults, $statType, [] ) +
-            array_get( $this->stats, $this->type . '.' . $statType, [] );
+            array_get( $this->stats, $this->getAttribute( 'type' ) . '.' . $statType, [] );
 
         foreach ( $stats as $key => $value ) {
             if (
@@ -91,7 +91,7 @@ trait Wearable
     {
         $configKeys = [];
 
-        switch ( $this->type ) {
+        switch ( $this->getAttribute( 'type' ) ) {
             case 'bracelet':
                 $configKeys[ 'item-type' ] = 'item-type.jewelry';
                 $configKeys[ 'body-location' ] = 'body-location.jewelry.either-wrist';

@@ -18,4 +18,6 @@ Route::group( [ 'middleware' => [ 'force.ssl', 'global.variables' ] ], function 
     Route::get( '/jewelry', [ 'as' => 'jewelry', 'uses' => 'ObjectController@jewelry' ] );
     Route::get( '/armor', [ 'as' => 'armor', 'uses' => 'ObjectController@armor' ] );
     Route::get( '/weapon', [ 'as' => 'weapon', 'uses' => 'ObjectController@weapon' ] );
+
+    Route::post( '/json-object', [ 'as' => 'json-object', 'uses' => 'ObjectController@jsonObject' ] );
 });

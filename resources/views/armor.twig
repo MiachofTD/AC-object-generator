@@ -173,6 +173,7 @@
         <div class="row">
             <div class="col-md-4">
                 {{ form_hidden( 'objectType', 'armor' ) }}
+                {{ csrf_field() }}
 
                 {{ form_label( 'submit', ' ' ) }}
                 {{ form_submit( 'Generate JSON', { class: 'form-control btn btn-success', id: 'submit' } ) }}

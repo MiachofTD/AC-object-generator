@@ -21,7 +21,7 @@ class Armor extends GameObject
      * @var array
      */
     protected $fillable = [
-        'type', 'tier', 'data',
+        'type', 'tier', 'int', 'bool', 'float', 'did', 'string', 'spellbook',
     ];
 
     /**
