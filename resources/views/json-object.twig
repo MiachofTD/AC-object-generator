@@ -1,0 +1,30 @@
+{% extends 'layout' %}
+
+{% block title %}Results{% endblock %}
+
+{% block pageTitle %}Results{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2">
+            <a href="javascript:void(0);" class="btn btn-primary" id="download">Download JSON</a>
+        </div>
+        <div class="col-md-10">
+<pre>
+{{ object.convertToJson()|raw }}
+</pre>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        $(document).on('click', '#download', function ( el ) {
+            var json = '{{ object.convertToJson( false )|raw }}';
+            var data = 'text/json;charset=utf-8,' + json;
+
+            $(this).attr('href', 'data:' + data);
+            $(this).attr('download', "{{ object.fileName }}.json");
+        });
+    </script>
+{% endblock %}

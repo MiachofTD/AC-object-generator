@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: lisa
- * Date: 11/7/17
- * Time: 6:08 PM
+ * Date: 12/15/17
+ * Time: 8:38 PM
  */
 
 return [
@@ -36,13 +36,29 @@ return [
             'id' => 16,
             'name' => 'Usable',
         ],
+        'ui-effects' => [
+            'id' => 18,
+            'name' => 'UI Effects',
+        ],
         'pyreal' => [
             'id' => 19,
             'name' => 'Pyreal',
         ],
-        'placement' => [
-            'id' => 101,
-            'name' => 'Placement',
+        'armor-type' => [
+            'id' => 27,
+            'name' => 'Armor Type',
+        ],
+        'armor-level' => [
+            'id' => 28,
+            'name' => 'Armor Level',
+        ],
+        'bonded' => [
+            'id' => 33,
+            'name' => 'Bonded',
+        ],
+        'placement-position' => [
+            'id' => 53,
+            'name' => 'Placement Position',
         ],
         'player-min-level' => [
             'id' => 86,
@@ -55,6 +71,10 @@ return [
         'physics' => [
             'id' => 93,
             'name' => 'Physics',
+        ],
+        'workmanship' => [
+            'id' => 105,
+            'name' => 'Item Workmanship',
         ],
         'spellcraft' => [
             'id' => 106,
@@ -72,9 +92,41 @@ return [
             'id' => 109,
             'name' => 'Player Minimum Arcane Lore',
         ],
+        'attuned' => [
+            'id' => 114,
+            'name' => 'Attuned',
+        ],
         'material-type' => [
             'id' => 131,
             'name' => 'Material Type',
+        ],
+        'wield-requirement' => [
+            'id' => 158,
+            'name' => 'Wield Requirement',
+        ],
+        'skill-type' => [
+            'id' => 159,
+            'name' => 'Skill Type',
+        ],
+        'wield-difficulty' => [
+            'id' => 160,
+            'name' => 'Wield Difficulty',
+        ],
+        'tsys-data' => [
+            'id' => 169,
+            'name' => 'TSYS Mutation Data',
+        ],
+        'wield-requirement-2' => [
+            'id' => 270,
+            'name' => 'Wield Requirement 2',
+        ],
+        'skill-type-2' => [
+            'id' => 271,
+            'name' => 'Skill Type 2',
+        ],
+        'wield-difficulty-2' => [
+            'id' => 272,
+            'name' => 'Wield Difficulty 2',
         ],
         'weenie-type' => [
             'id' => 9007,

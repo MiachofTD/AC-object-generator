@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    function addItem() {
+        const html = $('div.spell').last().html();
+        const item = document.createElement('div');
+
+        item.setAttribute('class', 'row spell');
+
+        item.innerHTML = html;
+        //If there are any values in any input or textarea, reset them.
+        $(item).find('input').each(function (key, element) {
+            $(element).val('');
+        });
+
+        return item;
+    }
+
+    $(document).ready(function () {
+        $("[type='checkbox']").bootstrapSwitch({
+            onText: 'Yes',
+            offText: 'No',
+            onColor: 'success'
+        });
+
+        $(document).on('click', '.add-item', function () {
+            //Create new item
+            const spells = $('.spells');
+            spells.append(addItem());
+
+            const item = document.createElement('div');
+            item.setAttribute('class', 'row');
+            item.innerHTML = "&nbsp;";
+            spells.append(item, '');
+        });
+
+        $('#arcane-lore').on('change', function () {
+            $('#spellcraft').val($(this).val());
+        });
+
+        var spells = 'select[name="spells[]"]';
+        $(document).on('change', spells, function() {
+            var count = $(spells).filter(function () {
+                return !!this.value;
+            }).length;
+
+            if ( count > 0 ) {
+                $('.spell-requirements input').prop('required', true);
+            }
+            else {
+                $('.spell-requirements input').prop('required', false);
+            }
+        });
+    });
+</script>

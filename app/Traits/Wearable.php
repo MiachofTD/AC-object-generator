@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: lisa
- * Date: 11/12/17
- * Time: 5:45 PM
+ * Date: 12/12/17
+ * Time: 9:18 PM
  */
 
 namespace AC\Traits;
@@ -18,9 +18,14 @@ trait Wearable
     public $fileName;
 
     /**
+     * @var array
+     */
+    public $spells;
+
+    /**
      * @var string
      */
-    public $type;
+    public $objectType;
 
     /**
      * @var array
@@ -46,9 +51,14 @@ trait Wearable
             throw new LogicException( get_class( $this ) . ' must have a $optionalStats.' );
         }
 
-        $stats = $this->{$statType} +
-            array_get( $this->defaults, $statType, [] ) +
-            array_get( $this->stats, $this->type . '.' . $statType, [] );
+        //We can't use getAttribute here because not everything we send to this function is an 'attribute'
+        $stats = $this->{$statType};
+        if ( !is_array( $stats ) ) {
+            $stats = [];
+        }
+
+        $stats += array_get( $this->defaults, $statType, [] ) +
+            array_get( $this->stats, $this->getAttribute( 'type' ) . '.' . $statType, [] );
 
         foreach ( $stats as $key => $value ) {
             if (
@@ -79,6 +89,8 @@ trait Wearable
             break;
         }
 
+        ksort( $stats, SORT_NUMERIC );
+
         return $stats;
     }
 
@@ -91,7 +103,7 @@ trait Wearable
     {
         $configKeys = [];
 
-        switch ( $this->type ) {
+        switch ( $this->getAttribute( 'type' ) ) {
             case 'bracelet':
                 $configKeys[ 'item-type' ] = 'item-type.jewelry';
                 $configKeys[ 'body-location' ] = 'body-location.jewelry.either-wrist';
@@ -115,5 +127,4 @@ trait Wearable
 
         return array_get( $configKeys, $configType, '' );
     }
-
 }

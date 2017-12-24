@@ -1,0 +1,36 @@
+{% extends 'layout' %}
+
+{% block title %}World Item{% endblock %}
+
+{% block pageTitle %}World Item{% endblock %}
+
+{% block content %}
+    <form action="{{ route( 'json-object' ) }}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'id', 'ID' ) }}
+                {{ form_text( 'id', old( 'id', '' ), { id: 'id', class: 'form-control', required: true } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'wcid', 'Weenie Class ID' ) }}
+                {{ form_text( 'wcid', old( 'wcid', '' ), { id: 'wcid', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_label( 'loc', 'LOC Code' ) }}
+                {{ form_text( 'loc', old( 'loc', '' ), { id: 'loc', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_hidden( 'objectType', 'world-item' ) }}
+                {{ csrf_field() }}
+
+                {{ form_label( 'submit', ' ' ) }}
+                {{ form_submit( 'Generate JSON', { class: 'form-control btn btn-success', id: 'submit' } ) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}

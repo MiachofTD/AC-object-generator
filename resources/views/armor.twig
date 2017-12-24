@@ -1,0 +1,192 @@
+{% extends 'layout' %}
+
+{% block title %}Armor{% endblock %}
+
+{% block pageTitle %}Armor{% endblock %}
+
+{% block content %}
+    <form action="{{ route( 'armor' ) }}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="file-name">File Name</label>
+                {{ form_label( 'file-name', 'File Name' ) }}
+                <div class="input-group">
+                    {{ form_text( 'fileName', old( 'fileName', '' ), { id: 'file-name', class: 'form-control', required: true } ) }}
+                    <span class="input-group-addon">.json</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'armor-type', 'Armor Type' ) }}
+                {{ form_select( 'type', {
+                    '': '-- Select One --',
+                    'coat': 'Coat',
+                }, old( 'type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'wcid', 'Weenie Class ID' ) }}
+                {{ form_number( 'wcid', old( 'wcid', ''), { id: 'wcid', class: 'form-control', required: true } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'icon', 'Icon' ) }}
+                <select name="did[8]" id="icon" class="form-control" required>
+                    <option>-- Select One --</option>
+                    {{ dropdown_category( 'icons.armor.coat', 'Coats' )|raw }}
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'item-name', 'Item Name' ) }}
+                {{ form_text( 'string[1]', old( 'string[1]', '' ), { id: 'item-name', class: 'form-control', required: true } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'additional-description', 'Additional Description' ) }}
+                {{ form_text( 'string[16]', old( 'string[16]', '' ), { id: 'additional-description', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'bonded', 'Bonded' ) }}&nbsp;&nbsp;&nbsp;
+                {{ form_checkbox( 'int[33]', old( 'int[33]', '' ), false, { id: 'bonded', class: 'form-control', required: false } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'attuned', 'Attuned' ) }}&nbsp;&nbsp;&nbsp;
+                {{ form_checkbox( 'int[114]', old( 'int[114]', '' ), false, { id: 'attuned', class: 'form-control', required: false } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'pyreal-value', 'Pyreal Value' ) }}
+                {{ form_number( 'int[19]', old( 'int[19]', '' ), { id: 'pyreal-value', class: 'form-control', required: true } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'burden-value', 'Burden Value' ) }}
+                {{ form_number( 'int[5]', old( 'int[5]', '' ), { id: 'burden-value', class: 'form-control', required: true } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'amor-level', 'Armor Level' ) }}
+                {{ form_number( 'int[28]', old( 'int[28]', '' ), { id: 'amor-level', class: 'form-control' } ) }}
+            </div>
+            <div class="col-md-6">&nbsp;</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'min-level', 'Player Min Level' ) }}
+                {{ form_number( 'int[86]', old( 'int[86]', '' ), { id: 'min-level', class: 'form-control' } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'max-level', 'Player Max Level' ) }}
+                {{ form_number( 'int[87]', old( 'int[87]', '' ), { id: 'min-level', class: 'form-control' } ) }}
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="material-type">Material Type</label>
+                <select name="int[131]" class="form-control" id="mana-rate" required>
+                    <option value="">-- Select One --</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="pallet-template">Pallet Template</label>
+                <select name="int[3]" class="form-control" id="pallet-template">
+                    <option value="">-- Select One --</option>
+                    {{ dropdown_options( 'pallet-template' )|raw }}
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="spells">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>{{ form_label( 'creature-spells', 'Creature Spells' ) }}</h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>{{ form_label( 'item-spells', 'Item Spells' ) }}</h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>{{ form_label( 'life-spells', 'Life Spells' ) }}</h4>
+                </div>
+            </div>
+
+            <div class="row spell">
+                <div class="col-md-4">
+                    <select name="spells[]" class="form-control" id="creature-spells">
+                        <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.creature' )|raw }}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select name="spells[]" class="form-control" id="item-spells">
+                        <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.item' )|raw }}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select name="spells[]" class="form-control" id="life-spells">
+                        <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.life' )|raw }}
+                    </select>
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <span class="btn btn-primary form-control add-item">Add More Spells</span>
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="spell-requirements">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label( 'current-mana', 'Current Mana Value' ) }}
+                    {{ form_number( 'int[107]', old( 'int[107]', '' ), { id: 'current-mana', class: 'form-control' } ) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_label( 'max-mana', 'Maximum Mana Value' ) }}
+                    {{ form_number( 'int[108]', old( 'int[108]', '' ), { id: 'max-mana', class: 'form-control' } ) }}
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label( 'arcane-lore', 'Player Arcane Lore Level' ) }}
+                    {{ form_number( 'int[109]', old( 'int[109]', '' ), { id: 'arcane-lore', class: 'form-control' } ) }}
+                    {{ form_hidden( 'int[106]', '' ) }}
+                </div>
+                <div class="col-md-6">
+                    <label for="mana-rate">Mana Usage Rate</label>
+                    <select name="float[5]" class="form-control" id="mana-rate">
+                        <option value="">-- Select One --</option>
+                        {{ dropdown_options( 'mana-usage' )|raw }}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_hidden( 'objectType', 'armor' ) }}
+                {{ csrf_field() }}
+
+                {{ form_label( 'submit', ' ' ) }}
+                {{ form_submit( 'Generate JSON', { class: 'form-control btn btn-success', id: 'submit' } ) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer_scripts %}
+    {% include 'components.add-spells' %}
+{% endblock %}

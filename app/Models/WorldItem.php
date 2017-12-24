@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lisa
- * Date: 10/25/17
- * Time: 6:50 PM
- */
 
 namespace AC\Models;
 
@@ -37,7 +31,7 @@ class WorldItem extends GameObject
      *
      * @return void
      */
-    protected function mapData( Request $request )
+    public function mapData( Request $request )
     {
         parent::mapData( $request );
 

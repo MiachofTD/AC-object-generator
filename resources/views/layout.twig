@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en/us">
+    <head>
+        <title>{% block title %}{% endblock %} | AC Custom Object Generator</title>
+        <link rel="stylesheet" href="{{ asset( 'css/app.css') }}" type="text/css">
+        <link rel="stylesheet" href="//gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" type="text/css" />
+
+        <!-- CSRF Token -->
+        {#<meta name="csrf-token" content="{{ csrf_token() }}" />#}
+
+        {% block styles %}{% endblock styles %}
+        {% block header_scripts %}{% endblock header_scripts %}
+
+        {% import 'macros.meta' as meta %}
+
+        {% block meta %}
+            {% block meta_canonical %}{% endblock %}
+            {% block meta_title %}
+                {{ meta.itemprop( 'name', 'AC Custom Object Generator' ) }}
+                {{ meta.property( 'og:title', 'AC Custom Object Generator' ) }}
+                {{ meta.name( 'twitter:title', 'AC Custom Object Generator' ) }}
+            {% endblock %}
+            {% block meta_sitename %}
+                {#{ meta.name( 'twitter:site', '@julisana' ) }#}
+                {{ meta.property( 'og:site_name', '' ) }}
+                {{ meta.name( 'twitter:card', 'summary' ) }}
+            {% endblock %}
+            {% block meta_description %}
+                {{ meta.name( 'description', '' ) }}
+                {{ meta.property( 'og:description', '' ) }}
+                {{ meta.property( 'twitter:description', '' ) }}
+            {% endblock %}
+            {% block meta_image %}
+                {#{ meta.itemprop( 'image', '' ) }#}
+                {{ meta.property( 'og:image', '' ) }}
+                {{ meta.name( 'twitter:image:src', '' ) }}
+
+                {{ meta.property( 'og:image:url', '' ) }}
+                {{ meta.property( 'og:image:width', '' ) }}
+                {{ meta.property( 'og:image:height', '' ) }}
+            {% endblock %}
+            {% block meta_other %}{% endblock %}
+        {% endblock meta %}
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                {% include 'navigation' %}
+                {% include 'messages' %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>{% block pageTitle %}{% endblock %}</h2>
+                    </div>
+                    {% if buttons is not empty %}
+                        {% include 'buttons' %}
+                    {% endif %}
+                </div>
+                <hr />
+            </header>
+
+            {% block content %}{% endblock %}
+
+            <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+            <script type="text/javascript" src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+            <script type="text/javascript">
+                $('input[type="checkbox"]').bootstrapToggle({
+                    'on': 'Yes',
+                    'off': 'No'
+                });
+            </script>
+
+            {% block footer_scripts %}{% endblock footer_scripts %}
+            <footer>
+                <hr/>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,86 +1,43 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lisa
- * Date: 10/25/17
- * Time: 6:50 PM
- */
 
 namespace AC\Models;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
-abstract class GameObject
+abstract class GameObject extends Model
 {
     /**
-     * @var int
-     */
-    public $id;
-
-    /**
-     * @var int
-     */
-    public $wcid;
-
-    /**
-     * @var int
-     */
-    public $weenieType;
-
-    /**
      * @var array
      */
-    public $int = [];
-
-    /**
-     * @var array
-     */
-    public $bool = [];
-
-    /**
-     * @var array
-     */
-    public $float = [];
-
-    /**
-     * @var array
-     */
-    public $did = [];
-
-    /**
-     * @var array
-     */
-    public $string = [];
-
-    /**
-     * @var array
-     */
-    public $spellbook = [];
-
-    /**
-     * @var array
-     */
-    public $spells = [];
-
-    /**
-     * GameObject constructor.
-     *
-     * @param Request $request
-     */
-    public function __construct( Request $request )
-    {
-        $this->mapData( $request );
-    }
+    protected $cast = [
+        'bool' => [
+            'int.33',
+            'int.114',
+        ],
+    ];
 
     /**
      * @param Request $request
      *
      * @return $this
      */
-    protected function mapData( Request $request )
+    public function mapData( Request $request )
     {
-        foreach ( $request->all() as $key => $value ) {
+        //Cast all boolean values appropriately, even if they don't exist.
+        $all = $request->except( [ '_token' ] );
+        foreach ( $this->cast[ 'bool' ] as $key ) {
+            $value = filter_var( $request->input( $key, 0 ), FILTER_VALIDATE_BOOLEAN );
+
+            data_set( $all, $key, $value );
+        }
+
+        foreach ( $all as $key => $value ) {
             $camelCase = camel_case( $key );
+
+            if ( is_null( $value ) ) {
+                continue;
+            }
 
             $this->{$camelCase} = $value;
         }
@@ -89,13 +46,17 @@ abstract class GameObject
     }
 
     /**
-     * @param $stats
+     * @param mixed $stats
      *
      * @return array
      */
     protected function convertStatsToJson( $stats )
     {
         $json = [];
+        if ( !is_array( $stats ) ) {
+            return $json;
+        }
+
         foreach ( $stats as $key => $value ) {
             $json[] = [ 'key' => $key, 'value' => $value ];
         }
@@ -111,14 +72,14 @@ abstract class GameObject
     public function convertToJson( $pretty = true )
     {
         $json = [
-            'intStats' => $this->convertStatsToJson( $this->int ),
-            'boolStats' => $this->convertStatsToJson( $this->bool ),
-            'floatStats' => $this->convertStatsToJson( $this->float ),
-            'didStats' => $this->convertStatsToJson( $this->did ),
-            'stringStats' => $this->convertStatsToJson( $this->string ),
-            'spellbook' => $this->convertStatsToJson( $this->spellbook ),
-            'wcid' => (int)$this->wcid,
-            'weenieType' => $this->weenieType,
+            'intStats' => $this->convertStatsToJson( $this->getAttribute( 'int' ) ),
+            'boolStats' => $this->convertStatsToJson( $this->getAttribute( 'bool' ) ),
+            'floatStats' => $this->convertStatsToJson( $this->getAttribute( 'float' ) ),
+            'didStats' => $this->convertStatsToJson( $this->getAttribute( 'did' ) ),
+            'stringStats' => $this->convertStatsToJson( $this->getAttribute( 'string' ) ),
+            'spellbook' => $this->convertStatsToJson( $this->getAttribute( 'spellbook' ) ),
+            'wcid' => (int)$this->getAttribute( 'wcid' ),
+            'weenieType' => $this->getAttribute( 'weenieType' ),
         ];
 
         if ( $pretty ) {

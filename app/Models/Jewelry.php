@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lisa
- * Date: 10/26/17
- * Time: 7:41 PM
- */
 
 namespace AC\Models;
 
@@ -14,6 +8,36 @@ use Illuminate\Http\Request;
 class Jewelry extends GameObject
 {
     use Wearable;
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'wcid';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'type', 'tier', 'int', 'bool', 'float', 'did', 'string', 'spellbook',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'int' => 'array',
+        'bool' => 'array',
+        'float' => 'array',
+        'did' => 'array',
+        'string' => 'array',
+        'spellbook' => 'array',
+    ];
 
     /**
      * Stat values necessary for each jewelry type
@@ -91,11 +115,11 @@ class Jewelry extends GameObject
      *
      * @return void
      */
-    protected function mapData( Request $request )
+    public function mapData( Request $request )
     {
         parent::mapData( $request );
 
-        $this->weenieType = array_get( $this->stats, $this->type . '.weenieType' );
+        $this->setAttribute( 'weenieType',  array_get( $this->stats, $this->type . '.weenieType' ) );
 
         //Set the item type
         $this->stats[ $this->type ][ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
@@ -103,18 +127,21 @@ class Jewelry extends GameObject
         //Set the body location
         $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
 
-        $this->int = $this->addDefaults( 'int' );
-        $this->bool = $this->addDefaults( 'bool' );
-        $this->float = $this->addDefaults( 'float' );
-        $this->did = $this->addDefaults( 'did' );
-        $this->string = $this->addDefaults( 'string' );
+        $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
+        $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
+        $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
+        $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
+        $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
         $this->spells = $this->addDefaults( 'spells' );
 
+        $spellbook = [];
         foreach ( $this->spells as $spell ) {
-            if ( $spell === 0 ) {
+            if ( is_null( $spell ) || $spell === 0 ) {
                 continue;
             }
-            $this->spellbook[ $spell ] = [ 'casting_likelihood' => array_get( $this->spellCastingLikelyhood, 'always', '' ) ];
+            $spellbook[ $spell ] = [ 'casting_likelihood' => array_get( $this->spellCastingLikelyhood, 'always', '' ) ];
         }
+
+        $this->setAttribute( 'spellbook', $spellbook );
     }
 }

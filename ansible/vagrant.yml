@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars:
+    cert_name: ac-generator
+    composer_path: /usr/local/bin/composer
+    composer_path_dir: /usr/local/bin
+    server_name: ac-generator.vm
+    node_version: 6.x
+    php_version: 7.1
+    upload_size_limit: 50M
+    mysql_root_password: password
+  tasks:
+    - include: tasks/system.yml
+    - include: tasks/common.yml
+    - include: tasks/nginx.yml
