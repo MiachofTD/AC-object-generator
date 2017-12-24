@@ -49,18 +49,18 @@
             </div>
             <div class="col-md-6">
                 {{ form_label( 'additional-description', 'Additional Description' ) }}
-                {{ form_text( 'string[16]', old( 'string[16]', '' ), { id: 'additional-description', class: 'form-control', required: true } ) }}
+                {{ form_text( 'string[16]', old( 'string[16]', '' ), { id: 'additional-description', class: 'form-control', required: false } ) }}
             </div>
         </div>
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-md-6">
                 {{ form_label( 'bonded', 'Bonded' ) }}&nbsp;&nbsp;&nbsp;
-                {{ form_checkbox( 'int[33]', old( 'int[33]', '' ), { id: 'bonded', class: 'form-control', required: false } ) }}
+                {{ form_checkbox( 'int[33]', 1, old( 'int[33]', '' ), { id: 'bonded', class: 'form-control', required: false } ) }}
             </div>
             <div class="col-md-6">
                 {{ form_label( 'attuned', 'Attuned' ) }}&nbsp;&nbsp;&nbsp;
-                {{ form_checkbox( 'int[114]', old( 'int[114]', '' ), { id: 'attuned', class: 'form-control', required: false } ) }}
+                {{ form_checkbox( 'int[114]', 1, old( 'int[114]', '' ), { id: 'attuned', class: 'form-control', required: false } ) }}
             </div>
         </div>
         <div class="row">&nbsp;</div>
@@ -156,4 +156,8 @@
             </div>
         </div>
     </form>
+{% endblock %}
+
+{% block footer_scripts %}
+    {% include 'components.add-spells' %}
 {% endblock %}

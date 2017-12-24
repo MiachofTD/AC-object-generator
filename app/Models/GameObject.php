@@ -11,8 +11,10 @@ abstract class GameObject extends Model
      * @var array
      */
     protected $cast = [
-        'int[33]' => 'bool',
-        'int[114]' => 'bool',
+        'bool' => [
+            'int.33',
+            'int.114',
+        ],
     ];
 
     /**
@@ -22,15 +24,22 @@ abstract class GameObject extends Model
      */
     public function mapData( Request $request )
     {
-        dd( $request->all() );
-        foreach ( $request->all() as $key => $value ) {
+        //Cast all boolean values appropriately, even if they don't exist.
+        $all = $request->except( [ '_token' ] );
+        foreach ( $this->cast[ 'bool' ] as $key ) {
+            $value = filter_var( $request->input( $key, 0 ), FILTER_VALIDATE_BOOLEAN );
+
+            data_set( $all, $key, $value );
+        }
+
+        foreach ( $all as $key => $value ) {
             $camelCase = camel_case( $key );
 
             if ( is_null( $value ) ) {
                 continue;
             }
 
-            $this->setAttribute( $camelCase, $value );
+            $this->{$camelCase} = $value;
         }
 
         return $this;

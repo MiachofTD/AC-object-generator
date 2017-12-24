@@ -134,11 +134,14 @@ class Jewelry extends GameObject
         $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
         $this->spells = $this->addDefaults( 'spells' );
 
+        $spellbook = [];
         foreach ( $this->spells as $spell ) {
-            if ( $spell === 0 ) {
+            if ( is_null( $spell ) || $spell === 0 ) {
                 continue;
             }
-            $this->spellbook[ $spell ] = [ 'casting_likelihood' => array_get( $this->spellCastingLikelyhood, 'always', '' ) ];
+            $spellbook[ $spell ] = [ 'casting_likelihood' => array_get( $this->spellCastingLikelyhood, 'always', '' ) ];
         }
+
+        $this->setAttribute( 'spellbook', $spellbook );
     }
 }

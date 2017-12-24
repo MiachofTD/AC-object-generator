@@ -18,9 +18,14 @@ trait Wearable
     public $fileName;
 
     /**
+     * @var array
+     */
+    public $spells;
+
+    /**
      * @var string
      */
-    public $type;
+    public $objectType;
 
     /**
      * @var array
@@ -46,8 +51,13 @@ trait Wearable
             throw new LogicException( get_class( $this ) . ' must have a $optionalStats.' );
         }
 
-        $stats = $this->getAttribute( $statType ) +
-            array_get( $this->defaults, $statType, [] ) +
+        //We can't use getAttribute here because not everything we send to this function is an 'attribute'
+        $stats = $this->{$statType};
+        if ( !is_array( $stats ) ) {
+            $stats = [];
+        }
+
+        $stats += array_get( $this->defaults, $statType, [] ) +
             array_get( $this->stats, $this->getAttribute( 'type' ) . '.' . $statType, [] );
 
         foreach ( $stats as $key => $value ) {
@@ -78,6 +88,8 @@ trait Wearable
                 $stats = array_map( 'strval', $stats );
             break;
         }
+
+        ksort( $stats, SORT_NUMERIC );
 
         return $stats;
     }

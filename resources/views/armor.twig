@@ -19,7 +19,7 @@
                 {{ form_label( 'armor-type', 'Armor Type' ) }}
                 {{ form_select( 'type', {
                     '': '-- Select One --',
-                    'coat': 'coat',
+                    'coat': 'Coat',
                 }, old( 'type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
             </div>
         </div>
@@ -33,6 +33,7 @@
                 {{ form_label( 'icon', 'Icon' ) }}
                 <select name="did[8]" id="icon" class="form-control" required>
                     <option>-- Select One --</option>
+                    {{ dropdown_category( 'icons.armor.coat', 'Coats' )|raw }}
                 </select>
             </div>
         </div>
@@ -100,7 +101,7 @@
                 <label for="pallet-template">Pallet Template</label>
                 <select name="int[3]" class="form-control" id="pallet-template">
                     <option value="">-- Select One --</option>
-                    <?php echo dropdown_options( 'pallet-template' ); ?>
+                    {{ dropdown_options( 'pallet-template' )|raw }}
                 </select>
             </div>
         </div>
@@ -122,16 +123,19 @@
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="creature-spells">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.creature' )|raw }}
                     </select>
                 </div>
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="item-spells">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.item' )|raw }}
                     </select>
                 </div>
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="life-spells">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options_group( 'spells.life' )|raw }}
                     </select>
                 </div>
             </div>
@@ -165,6 +169,7 @@
                     <label for="mana-rate">Mana Usage Rate</label>
                     <select name="float[5]" class="form-control" id="mana-rate">
                         <option value="">-- Select One --</option>
+                        {{ dropdown_options( 'mana-usage' )|raw }}
                     </select>
                 </div>
             </div>
@@ -180,4 +185,8 @@
             </div>
         </div>
     </form>
+{% endblock %}
+
+{% block footer_scripts %}
+    {% include 'components.add-spells' %}
 {% endblock %}
