@@ -37,12 +37,12 @@
         });
 
         var spells = 'select[name="spells[]"]';
-        $(document).on('change', spells, function() {
+        $(document).on('change', spells, function () {
             var count = $(spells).filter(function () {
                 return !!this.value;
             }).length;
 
-            if ( count > 0 ) {
+            if (count > 0) {
                 $('.spell-requirements input').prop('required', true);
             }
             else {

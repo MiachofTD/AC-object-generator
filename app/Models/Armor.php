@@ -109,7 +109,7 @@ class Armor extends GameObject
             '87' => 0,          //Max Player Level
         ],
         'string' => [
-            '16' => '',
+            '16' => '',         //Additional Description
         ]
     ];
 

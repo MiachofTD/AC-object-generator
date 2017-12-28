@@ -80,7 +80,6 @@ class ObjectController extends Controller
 
         //Only the wearable items need to be saved to the database. World items don't need to generate unique values
         if ( $object->isWearable() ) {
-//            dd( $object );
             $object->save();
 
             $object->refresh();
