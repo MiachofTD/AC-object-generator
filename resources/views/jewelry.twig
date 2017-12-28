@@ -1,5 +1,7 @@
 {% extends 'layout' %}
 
+{% import 'macros.form' as form %}
+
 {% block title %}Jewelry{% endblock %}
 
 {% block pageTitle %}Jewelry{% endblock %}
@@ -20,9 +22,9 @@
                 {{ form_label( 'icon', 'Icon' ) }}
                 <select name="did[8]" id="icon" class="form-control" required>
                     <option>-- Select One --</option>
-                    {{ dropdown_category( 'icons.jewelry.bracelet', 'Bracelets' )|raw }}
-                    {{ dropdown_category( 'icons.jewelry.necklace', 'Necklaces' )|raw }}
-                    {{ dropdown_category( 'icons.jewelry.ring', 'Rings' )|raw }}
+                    {{ form.dropdown_options_category( 'icons.jewelry.bracelet', 'Bracelets' ) }}
+                    {{ form.dropdown_options_category( 'icons.jewelry.necklace', 'Necklaces' ) }}
+                    {{ form.dropdown_options_category( 'icons.jewelry.ring', 'Rings' ) }}
                 </select>
             </div>
         </div>
@@ -85,13 +87,13 @@
                 <div class="col-md-6">
                     <select name="spells[]" class="form-control" id="creature-spells">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options_group( 'spells.creature' )|raw }}
+                        {{ form.dropdown_options_group( 'spells.creature' ) }}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <select name="spells[]" class="form-control" id="life-spells">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options_group( 'spells.life' )|raw }}
+                        {{ form.dropdown_options_group( 'spells.life' ) }}
                     </select>
                 </div>
             </div>
@@ -125,7 +127,7 @@
                     <label for="mana-rate">Mana Usage Rate</label>
                     <select name="float[5]" class="form-control" id="mana-rate">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options( 'mana-usage' )|raw }}
+                        {{ form.dropdown_options( 'mana-usage' ) }}
                     </select>
                 </div>
             </div>

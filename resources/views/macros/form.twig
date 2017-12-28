@@ -1,0 +1,31 @@
+{% macro dropdown_options( configKey ) %}
+    {% set options = config( configKey, [] ) %}
+
+    {% for option in options %}
+        <option value="{{ option.id }}">{{ option.name }}</option>
+    {% endfor %}
+{% endmacro %}
+
+{% macro dropdown_options_group( configKey ) %}
+    {% set optionGroups = config( configKey, [] ) %}
+
+    {% for group,options in optionGroups %}
+        {% for option in options %}
+            <option value="{{ option.id }}">{{ option.name }}</option>
+        {% endfor %}
+
+        {% if not loop.last %}
+            <option value disabled> ... </option>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro dropdown_options_category( configKey, category ) %}
+    {% set options = config( configKey, [] ) %}
+
+    <optgroup label="--- {{ category }} ---">
+        {% for option in options %}
+            <option value="{{ option.id }}">{{ option.name }}</option>
+        {% endfor %}
+    </optgroup>
+{% endmacro %}

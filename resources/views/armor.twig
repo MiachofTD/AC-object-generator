@@ -1,5 +1,7 @@
 {% extends 'layout' %}
 
+{% import 'macros.form' as form %}
+
 {% block title %}Armor{% endblock %}
 
 {% block pageTitle %}Armor{% endblock %}
@@ -18,7 +20,7 @@
                 {{ form_label( 'icon', 'Icon' ) }}
                 <select name="did[8]" id="icon" class="form-control" required>
                     <option>-- Select One --</option>
-                    {{ dropdown_category( 'icons.armor.coat', 'Coats' )|raw }}
+                    {{ form.dropdown_options_category( 'icons.armor.coat', 'Coats' ) }}
                 </select>
             </div>
         </div>
@@ -69,15 +71,15 @@
                 <label for="material-type">Material Type</label>
                 <select name="int[131]" class="form-control" id="mana-rate" required>
                     <option value="">-- Select One --</option>
-                    {{ dropdown_options( 'material-type.metal' )|raw }}
-                    {{ dropdown_options( 'material-type.leather' )|raw }}
+                    {{ form.dropdown_options( 'material-type.metal' ) }}
+                    {{ form.dropdown_options( 'material-type.leather' ) }}
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="pallet-template">Pallet Template</label>
                 <select name="int[3]" class="form-control" id="pallet-template">
                     <option value="">-- Select One --</option>
-                    {{ dropdown_options( 'pallet-template' )|raw }}
+                    {{ form.dropdown_options( 'pallet-template' ) }}
                 </select>
             </div>
         </div>
@@ -110,19 +112,19 @@
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="creature-spells">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options_group( 'spells.creature' )|raw }}
+                        {{ form.dropdown_options_group( 'spells.creature' ) }}
                     </select>
                 </div>
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="item-spells">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options_group( 'spells.item' )|raw }}
+                        {{ form.dropdown_options_group( 'spells.item' ) }}
                     </select>
                 </div>
                 <div class="col-md-4">
                     <select name="spells[]" class="form-control" id="life-spells">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options_group( 'spells.life' )|raw }}
+                        {{ form.dropdown_options_group( 'spells.life' ) }}
                     </select>
                 </div>
             </div>
@@ -156,7 +158,7 @@
                     <label for="mana-rate">Mana Usage Rate</label>
                     <select name="float[5]" class="form-control" id="mana-rate">
                         <option value="">-- Select One --</option>
-                        {{ dropdown_options( 'mana-usage' )|raw }}
+                        {{ form.dropdown_options( 'mana-usage' ) }}
                     </select>
                 </div>
             </div>
