@@ -13,11 +13,6 @@ use LogicException;
 trait Wearable
 {
     /**
-     * @var string
-     */
-    public $fileName;
-
-    /**
      * @var array
      */
     public $spells;
@@ -35,12 +30,23 @@ trait Wearable
     ];
 
     /**
+     * @return bool
+     */
+    public function isWearable()
+    {
+        return true;
+    }
+
+    /**
      * @param string 0$statType
      *
      * @return array
      */
     protected function addDefaults( $statType )
     {
+        if ( empty( $statType ) ) {
+            throw new LogicException( 'A stat type must be passed to this function.' );
+        }
         if ( !isset( $this->defaults ) ) {
             throw new LogicException( get_class( $this ) . ' must have a $defaults.' );
         }

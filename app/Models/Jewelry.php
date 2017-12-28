@@ -17,12 +17,19 @@ class Jewelry extends GameObject
     protected $primaryKey = 'wcid';
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'jewelry';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'type', 'tier', 'int', 'bool', 'float', 'did', 'string', 'spellbook',
+        'type', 'weenieType', 'tier', 'int', 'bool', 'float', 'did', 'string', 'spellbook',
     ];
 
     /**

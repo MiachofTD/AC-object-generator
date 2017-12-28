@@ -8,26 +8,11 @@
     <form action="{{ route( 'armor' ) }}" method="post">
         <div class="row">
             <div class="col-md-6">
-                <label for="file-name">File Name</label>
-                {{ form_label( 'file-name', 'File Name' ) }}
-                <div class="input-group">
-                    {{ form_text( 'fileName', old( 'fileName', '' ), { id: 'file-name', class: 'form-control', required: true } ) }}
-                    <span class="input-group-addon">.json</span>
-                </div>
-            </div>
-            <div class="col-md-6">
                 {{ form_label( 'armor-type', 'Armor Type' ) }}
                 {{ form_select( 'type', {
                     '': '-- Select One --',
                     'coat': 'Coat',
                 }, old( 'type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
-            </div>
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_label( 'wcid', 'Weenie Class ID' ) }}
-                {{ form_number( 'wcid', old( 'wcid', ''), { id: 'wcid', class: 'form-control', required: true } ) }}
             </div>
             <div class="col-md-6">
                 {{ form_label( 'icon', 'Icon' ) }}
