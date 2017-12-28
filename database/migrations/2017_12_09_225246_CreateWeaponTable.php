@@ -18,6 +18,7 @@ class CreateWeaponTable extends Migration
             $table->bigIncrements( 'wcid' );
             $table->string( 'type' );
             $table->string( 'tier' );
+            $table->string( 'weenieType' );
             $table->text( 'int' )->nullable();
             $table->text( 'bool' )->nullable();
             $table->text( 'float' )->nullable();

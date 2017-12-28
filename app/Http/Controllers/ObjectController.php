@@ -5,7 +5,6 @@ namespace AC\Http\Controllers;
 use AC\Models\Armor;
 use AC\Models\Jewelry;
 use AC\Models\WorldItem;
-use AC\Traits\Wearable;
 use AC\Models\GameObject;
 use Illuminate\Http\Request;
 
@@ -69,7 +68,7 @@ class ObjectController extends Controller
                 $object = new Jewelry();
             break;
             case 'armor':
-                //$object = new Armor();
+                $object = new Armor();
             break;
         }
 
@@ -80,8 +79,11 @@ class ObjectController extends Controller
         $object->mapData( $request );
 
         //Only the wearable items need to be saved to the database. World items don't need to generate unique values
-        if ( $object instanceof Wearable ) {
-            //$object->save();
+        if ( $object->isWearable() ) {
+//            dd( $object );
+            $object->save();
+
+            $object->refresh();
         }
 
         $this->addContext( 'object', $object );

@@ -42,6 +42,8 @@ abstract class GameObject extends Model
             $this->{$camelCase} = $value;
         }
 
+        $this->setAttribute( 'tier', rand( 1, 9 ) );
+
         return $this;
     }
 
@@ -88,4 +90,13 @@ abstract class GameObject extends Model
 
         return json_encode( $json );
     }
+
+    /**
+     * @return bool
+     */
+    public function isWearable()
+    {
+        return false;
+    }
+
 }
