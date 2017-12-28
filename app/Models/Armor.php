@@ -125,7 +125,7 @@ class Armor extends GameObject
         $this->setAttribute( 'weenieType',  array_get( $this->stats, $this->type . '.weenieType' ) );
 
         //Set the item type
-        $this->defaults[ 'int' ][ '1' ] = config( 'item-type.armor.id' );
+        $this->stats[ $this->type ][ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
 
         //Clothing Priority
         $this->stats[ $this->type ][ 'int' ][ '4' ] = config( $this->configKey( 'clothing-priority' ) . '.id' );
@@ -134,14 +134,15 @@ class Armor extends GameObject
         $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
 
         //Item Workmanship
-        $this->defaults[ 'int' ][ '105' ] = rand( 1, 10 );
+        $this->stats[ $this->type ][ 'int' ][ '105' ] = rand( 1, 10 );
 
         //Bonded
-        if ( !$request->has( '33' ) ) {
+        if ( !$request->has( 'int.33' ) ) {
             $this->stats[ $this->type ][ 'int' ][ '33' ] = 0;
         }
+
         //Attuned
-        if ( !$request->has( '114' ) ) {
+        if ( !$request->has( 'int.114' ) ) {
             $this->stats[ $this->type ][ 'int' ][ '114' ] = 0;
         }
 

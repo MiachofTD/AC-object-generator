@@ -134,6 +134,16 @@ class Jewelry extends GameObject
         //Set the body location
         $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
 
+        //Bonded
+        if ( !$request->has( 'int.33' ) ) {
+            $this->stats[ $this->type ][ 'int' ][ '33' ] = 0;
+        }
+
+        //Attuned
+        if ( !$request->has( 'int.114' ) ) {
+            $this->stats[ $this->type ][ 'int' ][ '114' ] = 0;
+        }
+
         $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
         $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
         $this->setAttribute( 'float', $this->addDefaults( 'float' ) );

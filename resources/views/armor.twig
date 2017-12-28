@@ -5,7 +5,7 @@
 {% block pageTitle %}Armor{% endblock %}
 
 {% block content %}
-    <form action="{{ route( 'armor' ) }}" method="post">
+    <form action="{{ route( 'json-object' ) }}" method="post">
         <div class="row">
             <div class="col-md-6">
                 {{ form_label( 'armor-type', 'Armor Type' ) }}
@@ -66,20 +66,11 @@
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-md-6">
-                {{ form_label( 'min-level', 'Player Min Level' ) }}
-                {{ form_number( 'int[86]', old( 'int[86]', '' ), { id: 'min-level', class: 'form-control' } ) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_label( 'max-level', 'Player Max Level' ) }}
-                {{ form_number( 'int[87]', old( 'int[87]', '' ), { id: 'min-level', class: 'form-control' } ) }}
-            </div>
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-md-6">
                 <label for="material-type">Material Type</label>
                 <select name="int[131]" class="form-control" id="mana-rate" required>
                     <option value="">-- Select One --</option>
+                    {{ dropdown_options( 'material-type.metal' )|raw }}
+                    {{ dropdown_options( 'material-type.leather' )|raw }}
                 </select>
             </div>
             <div class="col-md-6">
@@ -88,6 +79,17 @@
                     <option value="">-- Select One --</option>
                     {{ dropdown_options( 'pallet-template' )|raw }}
                 </select>
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_label( 'min-level', 'Player Min Level' ) }}
+                {{ form_number( 'int[86]', old( 'int[86]', '' ), { id: 'min-level', class: 'form-control' } ) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label( 'max-level', 'Player Max Level' ) }}
+                {{ form_number( 'int[87]', old( 'int[87]', '' ), { id: 'min-level', class: 'form-control' } ) }}
             </div>
         </div>
         <hr />

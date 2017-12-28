@@ -2,8 +2,8 @@
 <html lang="en/us">
     <head>
         <title>{% block title %}{% endblock %} | AC Custom Object Generator</title>
-        <link rel="stylesheet" href="{{ asset( 'css/app.css') }}" type="text/css">
-        <link rel="stylesheet" href="//gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset( 'css/app.css') }}" />
+        <link rel="stylesheet" type="text/css" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" />
 
         <!-- CSRF Token -->
         {#<meta name="csrf-token" content="{{ csrf_token() }}" />#}
@@ -62,12 +62,13 @@
 
             {% block content %}{% endblock %}
 
-            <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-            <script type="text/javascript" src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+            <script type="text/javascript" src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
             <script type="text/javascript">
                 $('input[type="checkbox"]').bootstrapToggle({
                     'on': 'Yes',
-                    'off': 'No'
+                    'off': 'No',
+                    'onstyle': 'success'
                 });
             </script>
 

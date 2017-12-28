@@ -126,6 +126,7 @@ trait Wearable
             break;
 
             case 'coat':
+                $configKeys[ 'item-type' ] = 'item-type.armor';
                 $configKeys[ 'clothing-priority' ] = 'clothing-priority.armor.chest-ul-arms';
                 $configKeys[ 'body-location' ] = 'body-location.armor.chest-ul-arms';
             break;
