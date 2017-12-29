@@ -10,11 +10,11 @@
     <form action="{{ route( 'json-object' ) }}" method="post">
         <div class="row">
             <div class="col-md-6">
-                {{ form_label( 'armor-type', 'Armor Type' ) }}
+                {{ form_label( 'type', 'Armor Type' ) }}
                 {{ form_select( 'type', {
                     '': '-- Select One --',
                     'coat': 'Coat',
-                }, old( 'type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
+                }, old( 'type', '' ), { id: 'type', class: 'form-control', required: true } ) }}
             </div>
             <div class="col-md-6">
                 {{ form_label( 'icon', 'Icon' ) }}
@@ -145,21 +145,6 @@
                 <div class="col-md-6">
                     {{ form_label( 'max-mana', 'Maximum Mana Value' ) }}
                     {{ form_number( 'int[108]', old( 'int[108]', '' ), { id: 'max-mana', class: 'form-control' } ) }}
-                </div>
-            </div>
-            <div class="row">&nbsp;</div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_label( 'arcane-lore', 'Player Arcane Lore Level' ) }}
-                    {{ form_number( 'int[109]', old( 'int[109]', '' ), { id: 'arcane-lore', class: 'form-control' } ) }}
-                    {{ form_hidden( 'int[106]', '' ) }}
-                </div>
-                <div class="col-md-6">
-                    <label for="mana-rate">Mana Usage Rate</label>
-                    <select name="float[5]" class="form-control" id="mana-rate">
-                        <option value="">-- Select One --</option>
-                        {{ form.dropdown_options( 'mana-usage' ) }}
-                    </select>
                 </div>
             </div>
         </div>

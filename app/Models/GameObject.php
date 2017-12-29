@@ -42,7 +42,8 @@ abstract class GameObject extends Model
             $this->{$camelCase} = $value;
         }
 
-        $this->setAttribute( 'tier', rand( 1, 9 ) );
+        /** @todo Change tier attribute from hard-coded to a random value between 1 and 9 */
+        $this->setAttribute( 'tier', 7 );
 
         return $this;
     }
