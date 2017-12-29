@@ -18,6 +18,26 @@ abstract class GameObject extends Model
     ];
 
     /**
+     * Mutate the spellbook attribute to use a specific json option when encoding
+     *
+     * @param $value
+     */
+    public function setSpellbookAttribute( $value )
+    {
+        $this->attributes[ 'spellbook' ] = json_encode( $value, JSON_PRESERVE_ZERO_FRACTION );
+    }
+
+    /**
+     * Mutate the float attribute to use a specific json option when encoding
+     *
+     * @param $value
+     */
+    public function setFloatAttribute( $value )
+    {
+        $this->attributes[ 'float' ] = json_encode( $value, JSON_PRESERVE_ZERO_FRACTION );
+    }
+
+    /**
      * @param Request $request
      *
      * @return $this
@@ -86,10 +106,10 @@ abstract class GameObject extends Model
         ];
 
         if ( $pretty ) {
-            return json_encode( $json, JSON_PRETTY_PRINT );
+            return json_encode( $json, JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION );
         }
 
-        return json_encode( $json );
+        return json_encode( $json, JSON_PRESERVE_ZERO_FRACTION );
     }
 
     /**
