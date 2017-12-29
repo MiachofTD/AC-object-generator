@@ -124,11 +124,37 @@ return [
         ],
     ],
     'armor' => [
+        'amuli-coat' => [
+            'id' => 100670435,
+            'name' => 'Amuli Coat',
+        ],
+        'amuli-leggings' => [
+            'id' => 100670441,
+            'name' => 'Amuli Leggings',
+        ],
+
+        'amuli' => [
+            'coat' => [
+                'id' => 100670435,
+                'name' => 'Amuli Coat',
+            ],
+            'leggings' => [
+                'id' => 100670441,
+                'name' => 'Amuli Leggings',
+            ]
+        ],
+
         'coat' => [
             'amuli' => [
-                'id' => 100670433,
-                'name' => 'Amuli',
+                'id' => 100670435,
+                'name' => 'Amuli Coat',
             ],
+        ],
+        'leggings' => [
+            'amuli' => [
+                'id' => 100670441,
+                'name' => 'Amuli Leggings',
+            ]
         ]
     ],
 ];

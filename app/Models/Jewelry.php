@@ -129,26 +129,36 @@ class Jewelry extends GameObject
         $this->setAttribute( 'weenieType',  array_get( $this->stats, $this->type . '.weenieType' ) );
 
         //Set the item type
-        $this->stats[ $this->type ][ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
+        $this->defaults[ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
 
         //Set the body location
-        $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
+        $this->defaults[ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
+
+        //UI Effects
+        $this->defaults[ 'int' ][ '18' ] = 0;
+
+        //Pyreal Value
+        $this->defaults[ 'int' ][ '19' ] = rand(
+            config( $this->configKey( 'pyreal-value' ) . '.min' ),
+            config( $this->configKey( 'pyreal-value' ) . '.max' )
+        );
 
         //Bonded
         if ( !$request->has( 'int.33' ) ) {
-            $this->stats[ $this->type ][ 'int' ][ '33' ] = 0;
+            $this->defaults[ 'int' ][ '33' ] = 0;
         }
+
+        //Item Workmanship
+        $this->defaults[ 'int' ][ '105' ] = rand(
+            config( $this->configKey( 'workmanship' ) . '.min' ),
+            config( $this->configKey( 'workmanship' ) . '.max' )
+        );
 
         //Attuned
         if ( !$request->has( 'int.114' ) ) {
-            $this->stats[ $this->type ][ 'int' ][ '114' ] = 0;
+            $this->defaults[ 'int' ][ '114' ] = 0;
         }
 
-        $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
-        $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
-        $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
-        $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
-        $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
         $this->spells = $this->addDefaults( 'spells' );
 
         $spellbook = [];
@@ -160,5 +170,28 @@ class Jewelry extends GameObject
         }
 
         $this->setAttribute( 'spellbook', $spellbook );
+
+        if ( !empty( $spells ) ) {
+            //UI Effects
+            $this->defaults[ 'int' ][ '18' ] = 1;
+
+            //Spellcraft/Arcane Lore
+            $arcaneLore = rand(
+                config( $this->configKey( 'arcane-lore' ) . '.min' ),
+                config( $this->configKey( 'arcane-lore' ) . '.max' )
+            );
+
+            $this->defaults[ 'int' ][ '106' ] = $arcaneLore;
+            $this->defaults[ 'int' ][ '109' ] = $arcaneLore;
+
+            //Mana Usage Rate
+            $this->defaults[ 'float' ][ '5' ] = rand_float( 5, 33, 3 );
+        }
+
+        $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
+        $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
+        $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
+        $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
+        $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
     }
 }

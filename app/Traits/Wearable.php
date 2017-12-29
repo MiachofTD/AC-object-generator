@@ -113,22 +113,32 @@ trait Wearable
             case 'bracelet':
                 $configKeys[ 'item-type' ] = 'item-type.jewelry';
                 $configKeys[ 'body-location' ] = 'body-location.jewelry.either-wrist';
+                $configKeys[ 'pyreal-value' ] = 'tiers.' . $this->getAttribute( 'tier' ) . 'pyreal-value';
+                $configKeys[ 'workmanship' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.workmanship';
             break;
 
             case 'necklace':
                 $configKeys[ 'item-type' ] = 'item-type.misc'; //Yes, I know 'misc' doesn't make sense
                 $configKeys[ 'body-location' ] = 'jewelry.necklace';
+                $configKeys[ 'pyreal-value' ] = 'tiers.' . $this->getAttribute( 'tier' ) . 'pyreal-value';
+                $configKeys[ 'workmanship' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.workmanship';
             break;
 
             case 'ring':
                 $configKeys[ 'item-type' ] = 'item-type.misc'; //Yes, I know 'misc' doesn't make sense
                 $configKeys[ 'body-location' ] = 'jewelry.either-finger';
+                $configKeys[ 'pyreal-value' ] = 'tiers.' . $this->getAttribute( 'tier' ) . 'pyreal-value';
+                $configKeys[ 'workmanship' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.workmanship';
             break;
 
             case 'coat':
                 $configKeys[ 'item-type' ] = 'item-type.armor';
                 $configKeys[ 'clothing-priority' ] = 'clothing-priority.armor.chest-ul-arms';
                 $configKeys[ 'body-location' ] = 'body-location.armor.chest-ul-arms';
+                $configKeys[ 'pyreal-value' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.pyreal-value';
+                $configKeys[ 'armor-level' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.armor-level';
+                $configKeys[ 'workmanship' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.workmanship';
+                $configKeys[ 'arcane-lore' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.arcane-lore';
             break;
         }
 

@@ -72,7 +72,6 @@ class Armor extends GameObject
     protected $defaults = [
         'int' => [
             '16' => 1,          //Always Usable
-            '18' => 1,          //UI Effects
             '27' => 8,          //Armor Type???
             '53' => 101,        //Placement Position
             '93' => 1044,       //Physics State
@@ -125,32 +124,93 @@ class Armor extends GameObject
         $this->setAttribute( 'weenieType',  array_get( $this->stats, $this->type . '.weenieType' ) );
 
         //Set the item type
-        $this->stats[ $this->type ][ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
+        $this->defaults[ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
 
         //Clothing Priority
-        $this->stats[ $this->type ][ 'int' ][ '4' ] = config( $this->configKey( 'clothing-priority' ) . '.id' );
+        $this->defaults[ 'int' ][ '4' ] = config( $this->configKey( 'clothing-priority' ) . '.id' );
 
         //Set the body location
-        $this->stats[ $this->type ][ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
+        $this->defaults[ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
 
-        //Item Workmanship
-        $this->stats[ $this->type ][ 'int' ][ '105' ] = rand( 1, 10 );
+        //UI Effects
+        $this->defaults[ 'int' ][ '18' ] = 0;
+
+        //Pyreal Value
+        $this->defaults[ 'int' ][ '19' ] = rand(
+            config( $this->configKey( 'pyreal-value' ) . '.min' ),
+            config( $this->configKey( 'pyreal-value' ) . '.max' )
+        );
+
+        //Armor Level
+        $this->defaults[ 'int' ][ '28' ] = rand(
+            config( $this->configKey( 'armor-level' ) . '.min' ),
+            config( $this->configKey( 'armor-level' ) . '.max' )
+        );
 
         //Bonded
         if ( !$request->has( 'int.33' ) ) {
-            $this->stats[ $this->type ][ 'int' ][ '33' ] = 0;
+            $this->defaults[ 'int' ][ '33' ] = 0;
         }
+
+        //Item Workmanship
+        $this->defaults[ 'int' ][ '105' ] = rand(
+            config( $this->configKey( 'workmanship' ) . '.min' ),
+            config( $this->configKey( 'workmanship' ) . '.max' )
+        );
 
         //Attuned
         if ( !$request->has( 'int.114' ) ) {
-            $this->stats[ $this->type ][ 'int' ][ '114' ] = 0;
+            $this->defaults[ 'int' ][ '114' ] = 0;
         }
 
-        $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
-        $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
-        $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
-        $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
-        $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
+        //Slashing Protection
+        $this->defaults[ 'float' ][ '13' ] = rand(
+            config( 'protection.slashing.min' ),
+            config( 'protection.slashing.max' )
+        );
+
+        //Piercing Protection
+        $this->defaults[ 'float' ][ '14' ] = rand(
+            config( 'protection.piercing.min' ),
+            config( 'protection.piercing.max' )
+        );
+
+        //Bludgeoning Protection
+        $this->defaults[ 'float' ][ '15' ] = rand(
+            config( 'protection.bludgeoning.min' ),
+            config( 'protection.bludgeoning.max' )
+        );
+
+        //Cold Protection
+        $this->defaults[ 'float' ][ '16' ] = rand(
+            config( 'protection.cold.min' ),
+            config( 'protection.cold.max' )
+        );
+
+        //Fire Protection
+        $this->defaults[ 'float' ][ '17' ] = rand(
+            config( 'protection.fire.min' ),
+            config( 'protection.fire.max' )
+        );
+
+        //Acid Protection
+        $this->defaults[ 'float' ][ '18' ] = rand(
+            config( 'protection.acid.min' ),
+            config( 'protection.acid.max' )
+        );
+
+        //Electrical Protection
+        $this->defaults[ 'float' ][ '19' ] = rand(
+            config( 'protection.electrical.min' ),
+            config( 'protection.electrical.max' )
+        );
+
+        //Nether Protection
+        $this->defaults[ 'float' ][ '165' ] = rand(
+            config( 'protection.nether.min' ),
+            config( 'protection.nether.max' )
+        );
+
         $this->spells = $this->addDefaults( 'spells' );
 
         $spellbook = [];
@@ -162,5 +222,28 @@ class Armor extends GameObject
         }
 
         $this->setAttribute( 'spellbook', $spellbook );
+
+        if ( !empty( $spells ) ) {
+            //UI Effects
+            $this->defaults[ 'int' ][ '18' ] = 1;
+
+            //Spellcraft/Arcane Lore
+            $arcaneLore = rand(
+                config( $this->configKey( 'arcane-lore' ) . '.min' ),
+                config( $this->configKey( 'arcane-lore' ) . '.max' )
+            );
+
+            $this->defaults[ 'int' ][ '106' ] = $arcaneLore;
+            $this->defaults[ 'int' ][ '109' ] = $arcaneLore;
+
+            //Mana Usage Rate
+            $this->defaults[ 'float' ][ '5' ] = rand_float( 5, 33, 3 );
+        }
+
+        $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
+        $this->setAttribute( 'bool', $this->addDefaults( 'bool' ) );
+        $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
+        $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
+        $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
     }
 }
