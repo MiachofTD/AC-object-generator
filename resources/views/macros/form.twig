@@ -20,10 +20,10 @@
     {% endfor %}
 {% endmacro %}
 
-{% macro dropdown_options_category( configKey, category ) %}
+{% macro dropdown_options_category( configKey, category, id ) %}
     {% set options = config( configKey, [] ) %}
 
-    <optgroup label="--- {{ category }} ---">
+    <optgroup label="--- {{ category }} ---"{% if id is not empty %} id="{{ id }}"{% endif %}>
         {% for option in options %}
             <option value="{{ option.id }}">{{ option.name }}</option>
         {% endfor %}

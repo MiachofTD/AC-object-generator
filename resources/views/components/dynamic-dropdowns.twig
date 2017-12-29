@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#type').on('change', function () {
+            var value = $(this).val();
+
+            $('optgroup#icon-' + value ).show();
+            $('#icon optgroup').not( 'optgroup#icon-' + value ).hide();
+        });
+    });
+</script>
