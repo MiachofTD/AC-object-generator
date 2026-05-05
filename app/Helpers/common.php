@@ -20,7 +20,7 @@ if ( !function_exists( 'current_route' ) ) {
     }
 }
 
-if ( !function_exists( 'rand_float' ) ) {
+if ( !function_exists( 'float_rand' ) ) {
     /**
      * @param int $min
      * @param int $max
@@ -28,14 +28,14 @@ if ( !function_exists( 'rand_float' ) ) {
      *
      * @return float|int
      */
-    function rand_float( $min = 0, $max = 1, $decimalPlaces = 1 )
+    function float_rand( $min = 0, $max = 1, $decimalPlaces = 1 )
     {
         $decimal = '.';
-        for ( $i = 0; $i < $places - 1; $i++ ) {
+        for ( $i = 1; $i < $decimalPlaces; $i++ ) {
             $decimal .= '0';
         }
         $decimal .= '1';
 
-        return rand( $min, $max ) * $decimal;
+        return number_format( rand( $min, $max ) * $decimal, $decimalPlaces );
     }
 }

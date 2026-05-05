@@ -185,7 +185,7 @@ class Jewelry extends GameObject
             $this->defaults[ 'int' ][ '109' ] = $arcaneLore;
 
             //Mana Usage Rate
-            $this->defaults[ 'float' ][ '5' ] = rand_float( 5, 33, 3 );
+            $this->defaults[ 'float' ][ '5' ] = float_rand( 5, 33, 3 );
         }
 
         $this->setAttribute( 'int', $this->addDefaults( 'int' ) );

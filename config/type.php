@@ -8,17 +8,25 @@
 
 return [
     'jewelry' => [
-        'bracelet' => 'Bracelet',
-        'necklace' => 'Necklace',
-        'ring' => 'Ring',
+        'bracelet' => [
+            'name' => 'Bracelet',
+            'type' => 'bracelet',
+
+        ],
+        'necklace' => [
+            'name' => 'Necklace',
+            'type' => 'necklace',
+        ],
+        'ring' => [
+            'name' => 'Ring',
+            'type' => 'ring',
+        ],
     ],
     'armor' => [
         'amuli-coat' => [
             'name' => 'Amuli Coat',
+            'type' => 'coat',
+            'style' => 'amuli',
         ],
-        'mana-usage' => [
-            'min' => 5,
-            'max' => 33,
-        ]
     ]
 ];

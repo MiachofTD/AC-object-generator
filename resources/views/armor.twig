@@ -10,11 +10,11 @@
     <form action="{{ route( 'json-object' ) }}" method="post">
         <div class="row">
             <div class="col-md-6">
-                {{ form_label( 'type', 'Armor Type' ) }}
-                {{ form_select( 'type', {
+                {{ form_label( 'armor-type', 'Armor Type' ) }}
+                {{ form_select( 'armor_type', {
                     '': '-- Select One --',
-                    'coat': 'Coat',
-                }, old( 'type', '' ), { id: 'type', class: 'form-control', required: true } ) }}
+                    'amuli-coat': 'Amuli Coat',
+                }, old( 'armor_type', '' ), { id: 'armor-type', class: 'form-control', required: true } ) }}
             </div>
             <div class="col-md-6">
                 {{ form_label( 'icon', 'Icon' ) }}

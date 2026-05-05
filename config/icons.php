@@ -133,6 +133,7 @@ return [
             'name' => 'Amuli Leggings',
         ],
 
+        //organized by style
         'amuli' => [
             'coat' => [
                 'id' => 100670435,
@@ -144,6 +145,7 @@ return [
             ]
         ],
 
+        //organized by armor piece
         'coat' => [
             'amuli' => [
                 'id' => 100670435,

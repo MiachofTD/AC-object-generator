@@ -10,6 +10,11 @@ class Armor extends GameObject
     use Wearable;
 
     /**
+     * @var string
+     */
+    protected $armorType;
+
+    /**
      * The primary key for the model.
      *
      * @var string
@@ -121,13 +126,22 @@ class Armor extends GameObject
     {
         parent::mapData( $request );
 
+        $armorType = $request->get( 'armor_type' );
+        $type = config( 'type.armor.' . $armorType );
+
+        $this->setAttribute( 'type', $type[ 'type' ] );
         $this->setAttribute( 'weenieType',  array_get( $this->stats, $this->type . '.weenieType' ) );
+
+        //Icon
+        $this->defaults[ 'did' ][ '8' ] = config( 'icons.' . $armorType );
 
         //Set the item type
         $this->defaults[ 'int' ][ '1' ] = config( $this->configKey( 'item-type' ) . '.id' );
 
         //Clothing Priority
         $this->defaults[ 'int' ][ '4' ] = config( $this->configKey( 'clothing-priority' ) . '.id' );
+
+        $this->defaults[ 'int' ][ '5' ] = '';
 
         //Set the body location
         $this->defaults[ 'int' ][ '9' ] = config( $this->configKey( 'body-location' ) . '.id' );
@@ -163,53 +177,7 @@ class Armor extends GameObject
             $this->defaults[ 'int' ][ '114' ] = 0;
         }
 
-        //Slashing Protection
-        $this->defaults[ 'float' ][ '13' ] = rand(
-            config( 'protection.slashing.min' ),
-            config( 'protection.slashing.max' )
-        );
-
-        //Piercing Protection
-        $this->defaults[ 'float' ][ '14' ] = rand(
-            config( 'protection.piercing.min' ),
-            config( 'protection.piercing.max' )
-        );
-
-        //Bludgeoning Protection
-        $this->defaults[ 'float' ][ '15' ] = rand(
-            config( 'protection.bludgeoning.min' ),
-            config( 'protection.bludgeoning.max' )
-        );
-
-        //Cold Protection
-        $this->defaults[ 'float' ][ '16' ] = rand(
-            config( 'protection.cold.min' ),
-            config( 'protection.cold.max' )
-        );
-
-        //Fire Protection
-        $this->defaults[ 'float' ][ '17' ] = rand(
-            config( 'protection.fire.min' ),
-            config( 'protection.fire.max' )
-        );
-
-        //Acid Protection
-        $this->defaults[ 'float' ][ '18' ] = rand(
-            config( 'protection.acid.min' ),
-            config( 'protection.acid.max' )
-        );
-
-        //Electrical Protection
-        $this->defaults[ 'float' ][ '19' ] = rand(
-            config( 'protection.electrical.min' ),
-            config( 'protection.electrical.max' )
-        );
-
-        //Nether Protection
-        $this->defaults[ 'float' ][ '165' ] = rand(
-            config( 'protection.nether.min' ),
-            config( 'protection.nether.max' )
-        );
+        $this->addProtections();
 
         $this->spells = $this->addDefaults( 'spells' );
 
@@ -237,7 +205,7 @@ class Armor extends GameObject
             $this->defaults[ 'int' ][ '109' ] = $arcaneLore;
 
             //Mana Usage Rate
-            $this->defaults[ 'float' ][ '5' ] = rand_float( 5, 33, 3 );
+            $this->defaults[ 'float' ][ '5' ] = float_rand( 5, 33, 3 );
         }
 
         $this->setAttribute( 'int', $this->addDefaults( 'int' ) );
@@ -245,5 +213,61 @@ class Armor extends GameObject
         $this->setAttribute( 'float', $this->addDefaults( 'float' ) );
         $this->setAttribute( 'did', $this->addDefaults( 'did' ) );
         $this->setAttribute( 'string', $this->addDefaults( 'string' ) );
+    }
+
+    /**
+     * @return $this
+     */
+    public function addProtections()
+    {
+        //Slashing Protection
+        $this->defaults[ 'float' ][ '13' ] = float_rand(
+            config( 'protection.slashing.min' ) * 10,
+            config( 'protection.slashing.max' ) * 10
+        );
+
+        //Piercing Protection
+        $this->defaults[ 'float' ][ '14' ] = float_rand(
+            config( 'protection.piercing.min' ) * 10,
+            config( 'protection.piercing.max' ) * 10
+        );
+
+        //Bludgeoning Protection
+        $this->defaults[ 'float' ][ '15' ] = float_rand(
+            config( 'protection.bludgeoning.min' ) * 10,
+            config( 'protection.bludgeoning.max' ) * 10
+        );
+
+        //Cold Protection
+        $this->defaults[ 'float' ][ '16' ] = float_rand(
+            config( 'protection.cold.min' ) * 10,
+            config( 'protection.cold.max' ) * 10
+        );
+
+        //Fire Protection
+        $this->defaults[ 'float' ][ '17' ] = float_rand(
+            config( 'protection.fire.min' ) * 10,
+            config( 'protection.fire.max' ) * 10
+        );
+
+        //Acid Protection
+        $this->defaults[ 'float' ][ '18' ] = float_rand(
+            config( 'protection.acid.min' ) * 10,
+            config( 'protection.acid.max' ) * 10
+        );
+
+        //Electrical Protection
+        $this->defaults[ 'float' ][ '19' ] = float_rand(
+            config( 'protection.electrical.min' ) * 10,
+            config( 'protection.electrical.max' ) * 10
+        );
+
+        //Nether Protection
+        $this->defaults[ 'float' ][ '165' ] = float_rand(
+            config( 'protection.nether.min' ) * 10,
+            config( 'protection.nether.max' ) * 10
+        );
+
+        return $this;
     }
 }

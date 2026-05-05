@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 abstract class GameObject extends Model
 {
     /**
+     * This is different than $casts, which is what laravel uses to cast eloquent values
+     *
      * @var array
      */
     protected $cast = [
