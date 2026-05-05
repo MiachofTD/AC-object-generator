@@ -26,10 +26,6 @@
             spells.append(item, '');
         });
 
-        $('#arcane-lore').on('change', function () {
-            $('#spellcraft').val($(this).val());
-        });
-
         var spells = 'select[name="spells[]"]';
         $(document).on('change', spells, function () {
             var count = $(spells).filter(function () {

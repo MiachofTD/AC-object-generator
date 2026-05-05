@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 abstract class GameObject extends Model
 {
     /**
+     * This is different than $casts, which is what laravel uses to cast eloquent values
+     *
      * @var array
      */
     protected $cast = [
@@ -16,6 +18,26 @@ abstract class GameObject extends Model
             'int.114',
         ],
     ];
+
+    /**
+     * Mutate the spellbook attribute to use a specific json option when encoding
+     *
+     * @param $value
+     */
+    public function setSpellbookAttribute( $value )
+    {
+        $this->attributes[ 'spellbook' ] = json_encode( $value, JSON_PRESERVE_ZERO_FRACTION );
+    }
+
+    /**
+     * Mutate the float attribute to use a specific json option when encoding
+     *
+     * @param $value
+     */
+    public function setFloatAttribute( $value )
+    {
+        $this->attributes[ 'float' ] = json_encode( $value, JSON_PRESERVE_ZERO_FRACTION );
+    }
 
     /**
      * @param Request $request
@@ -42,7 +64,8 @@ abstract class GameObject extends Model
             $this->{$camelCase} = $value;
         }
 
-        $this->setAttribute( 'tier', rand( 1, 9 ) );
+        /** @todo Change tier attribute from hard-coded to a random value between 1 and 9 */
+        $this->setAttribute( 'tier', 7 );
 
         return $this;
     }
@@ -85,10 +108,10 @@ abstract class GameObject extends Model
         ];
 
         if ( $pretty ) {
-            return json_encode( $json, JSON_PRETTY_PRINT );
+            return json_encode( $json, JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION );
         }
 
-        return json_encode( $json );
+        return json_encode( $json, JSON_PRESERVE_ZERO_FRACTION );
     }
 
     /**

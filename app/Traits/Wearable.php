@@ -107,7 +107,10 @@ trait Wearable
      */
     protected function configKey( $configType )
     {
-        $configKeys = [];
+        $configKeys = [
+            'pyreal-value' => 'tiers.' . $this->getAttribute( 'tier' ) . 'pyreal-value',
+            'workmanship' => 'tiers.' . $this->getAttribute( 'tier' ) . '.workmanship',
+        ];
 
         switch ( $this->getAttribute( 'type' ) ) {
             case 'bracelet':
@@ -129,6 +132,8 @@ trait Wearable
                 $configKeys[ 'item-type' ] = 'item-type.armor';
                 $configKeys[ 'clothing-priority' ] = 'clothing-priority.armor.chest-ul-arms';
                 $configKeys[ 'body-location' ] = 'body-location.armor.chest-ul-arms';
+                $configKeys[ 'armor-level' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.armor-level';
+                $configKeys[ 'arcane-lore' ] = 'tiers.' . $this->getAttribute( 'tier' ) . '.arcane-lore';
             break;
         }
 

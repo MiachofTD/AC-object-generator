@@ -17,7 +17,7 @@ class CreateWeaponTable extends Migration
         Schema::create( 'weapon', function ( Blueprint $table ) {
             $table->bigIncrements( 'wcid' );
             $table->string( 'type' );
-            $table->string( 'tier' );
+            $table->tinyinteger( 'tier' );
             $table->string( 'weenieType' );
             $table->text( 'int' )->nullable();
             $table->text( 'bool' )->nullable();
